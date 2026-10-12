@@ -1,0 +1,23 @@
+title: 'HTTP Response Splitting: CRLF injection with header injection attempt'
+id: 3c4b3c12-76ec-5438-9bb6-9985091521b2
+name: wazuh_100330
+status: experimental
+description: 'HTTP Response Splitting: CRLF injection with header injection attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(%0d%0a|%0d|%0a)(set-cookie|location|content-type)%3a'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100330'
+- '100746'

@@ -1,0 +1,23 @@
+title: 'JWT Attack: Manipulated time claims'
+id: 8d43f972-ede1-5b21-80ec-bb0d27c81552
+name: wazuh_100425
+status: experimental
+description: 'JWT Attack: Manipulated time claims — token validity abuse (far-future exp or zero nbf/iat).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1550
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '("exp"\s*:\s*[0-9]{11,}|"nbf"\s*:\s*0\b|"iat"\s*:\s*0\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100425'
+- '100763'

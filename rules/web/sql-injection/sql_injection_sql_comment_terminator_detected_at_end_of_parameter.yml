@@ -1,0 +1,23 @@
+title: 'SQL Injection: SQL comment terminator detected at end of parameter'
+id: f2cd7a65-a1dd-5cc9-981c-260299e63fed
+name: wazuh_100108
+status: experimental
+description: 'SQL Injection: SQL comment terminator detected at end of parameter.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '\?.*(?:''|%27|"|%22|\)|%29|\s|%20|\+|=\d+)(?:--|%2d%2d|%23)(?:\s|%20|\+)*$'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100108'
+- '100787'

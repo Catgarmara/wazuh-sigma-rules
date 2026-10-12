@@ -1,0 +1,23 @@
+title: 'Upload Attack: SVG/HTML file upload'
+id: e7f85de5-320f-5884-875c-245ff5ba4606
+name: wazuh_100464
+status: experimental
+description: 'Upload Attack: SVG/HTML file upload — potential stored XSS vector.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(upload|file_upload).*\.(svg|html|htm|xhtml)\b'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100464'
+- '100811'

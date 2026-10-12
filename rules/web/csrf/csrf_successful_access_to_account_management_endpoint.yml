@@ -1,0 +1,23 @@
+title: 'CSRF: Successful access to account management endpoint'
+id: f8e4d11d-e6e1-52f8-966f-20370d3fb631
+name: wazuh_100242
+status: experimental
+description: 'CSRF: Successful access to account management endpoint — verify legitimacy.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/password\/change|\/account\/delete|\/admin\/users\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100242'
+- '100731'

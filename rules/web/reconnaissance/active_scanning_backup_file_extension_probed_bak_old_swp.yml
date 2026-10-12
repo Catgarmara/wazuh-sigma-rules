@@ -1,0 +1,22 @@
+title: 'Active Scanning: Backup file extension probed (.bak/.old/.swp)'
+id: d5699b9b-57bb-5f99-9d68-a3684b716595
+name: wazuh_101605
+status: experimental
+description: 'T1595 - Active Scanning: Backup file extension probed (.bak/.old/.swp).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.(bak|backup|old|orig|save|swp|swo|~|copy)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '101605'

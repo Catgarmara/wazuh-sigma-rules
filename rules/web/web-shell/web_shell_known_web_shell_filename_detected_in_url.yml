@@ -1,0 +1,23 @@
+title: 'Web Shell: Known web shell filename detected in URL'
+id: 10709126-7c12-557a-8f99-bcb09d69b927
+name: wazuh_100290
+status: experimental
+description: 'Web Shell: Known web shell filename detected in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(c99\.php|r57\.php|wso\.php|b374k|weevely|alfa\.php|adminer\.php)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100290'
+- '100816'

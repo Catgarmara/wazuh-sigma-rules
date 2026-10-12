@@ -1,0 +1,25 @@
+title: 'SSRF: Cloud metadata endpoint (169.254.169.254) access attempt'
+id: e06ce375-907e-5c5b-b0a5-0f1ad51840f5
+name: wazuh_100222
+status: experimental
+description: 'SSRF: Cloud metadata endpoint (169.254.169.254) access attempt — credential theft.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.credential-access
+- attack.t1190
+- attack.t1552
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(=https?:\/\/169\.254\.169\.254)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100222'
+- '100793'

@@ -1,0 +1,22 @@
+title: 'Account Discovery: Local account/group enumeration'
+id: b7f1225d-0e4e-53e9-9149-38e393c5a228
+name: wazuh_101305
+status: experimental
+description: 'T1087.001 - Account Discovery: Local account/group enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1087.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcat\b\s+\/etc\/(passwd|group|sudoers)|\bgetent\b\s+(passwd|group))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101305'

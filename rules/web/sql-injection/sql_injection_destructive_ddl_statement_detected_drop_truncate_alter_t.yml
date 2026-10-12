@@ -1,0 +1,23 @@
+title: 'SQL Injection: Destructive DDL statement detected (DROP/TRUNCATE/ALTER TABLE)'
+id: 3b8f510b-28b3-56c6-bd60-2e7c6a9114da
+name: wazuh_100103
+status: experimental
+description: 'SQL Injection: Destructive DDL statement detected (DROP/TRUNCATE/ALTER TABLE).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(?:;|%3b|''|%27|\)|%29)(?:\s|%20|\+|%09)*(?:drop|truncate|alter)(?:\s|%20|\+|%09)+table\b'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100103'
+- '100782'

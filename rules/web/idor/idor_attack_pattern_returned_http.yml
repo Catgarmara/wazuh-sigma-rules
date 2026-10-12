@@ -1,0 +1,27 @@
+title: 'IDOR: attack pattern returned HTTP 200'
+id: c1ac26ae-6d8d-54f5-8ffb-258295028ced
+name: wazuh_100757
+status: experimental
+description: 'IDOR: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\/api\/.*\/(download|export|attachment|file)\/\d+)'
+    - '(\/api\/.*\/(order|invoice|receipt|ticket)\/\d+)'
+    - '(\/users?\/\d+\/(profile|settings|documents|orders|invoices))'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100757'

@@ -1,0 +1,24 @@
+title: 'PAM Modification: PAM module configuration modified'
+id: edcd1ac5-5ef9-54ba-bc77-085b59527d6e
+name: wazuh_101109
+status: experimental
+description: 'T1556.003 - PAM Modification: PAM module configuration modified — auth backdoor.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.persistence
+- attack.credential-access
+- attack.t1556.003
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/pam\.d\/|\/lib\/security\/pam_)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101109'

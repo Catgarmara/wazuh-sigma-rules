@@ -1,0 +1,27 @@
+title: 'Valid Accounts: Brute force against SSH from single source'
+id: ba09d5fa-0dd1-5e0e-922c-19029863f0a1
+name: wazuh_101006
+status: experimental
+description: 'T1078 - Valid Accounts: Brute force against SSH from single source.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_101005
+  timespan: 120s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 10
+level: high
+wazuh_rule_id:
+- '101006'
+tags:
+- attack.stealth
+- attack.persistence
+- attack.privilege-escalation
+- attack.initial-access
+- attack.credential-access
+- attack.t1078
+- attack.t1110

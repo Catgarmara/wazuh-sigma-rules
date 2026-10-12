@@ -1,0 +1,23 @@
+title: 'Open Redirect: URL parameter redirecting to external domain'
+id: 30717dae-c075-5896-8830-ce3aef4f009e
+name: wazuh_100340
+status: experimental
+description: 'Open Redirect: URL parameter redirecting to external domain.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\b(redirect|return|next|url|continue|dest|destination|redir|return_to|returnUrl|goto)\s*=\s*https?:\/\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100340'
+- '100765'

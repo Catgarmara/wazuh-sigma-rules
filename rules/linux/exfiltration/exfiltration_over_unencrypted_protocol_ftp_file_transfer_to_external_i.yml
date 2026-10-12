@@ -1,0 +1,22 @@
+title: 'Exfiltration Over Unencrypted Protocol: FTP file transfer to external IP'
+id: 74ee8d02-8825-5989-8e75-fbc58fb7a596
+name: wazuh_101505
+status: experimental
+description: 'T1048.003 - Exfiltration Over Unencrypted Protocol: FTP file transfer to external IP.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1048.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bftp\b\s+-[niv]*\s+\d+\.\d+\.\d+\.\d+|\bncftp\b|\blftp\b\s+(-e|sftp|ftp):\/\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101505'

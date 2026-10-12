@@ -1,0 +1,22 @@
+title: 'Archive Collected Data: Tar archive of sensitive directories created'
+id: df0305ca-6771-5a91-b0eb-4b250cdb7564
+name: wazuh_101400
+status: experimental
+description: 'T1560.001 - Archive Collected Data: Tar archive of sensitive directories created.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1560.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\btar\b\s+(-czf|-cjf|-cf)\s+.*\/(home|etc|var|opt|srv|root))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101400'

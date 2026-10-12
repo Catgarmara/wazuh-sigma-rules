@@ -1,0 +1,23 @@
+title: 'WordPress: XML-RPC abuse'
+id: 96d9558e-bf24-54db-adb4-9c2f8bc144e0
+name: wazuh_100482
+status: experimental
+description: 'WordPress: XML-RPC abuse — brute force or DDoS amplification via xmlrpc.php.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.t1110
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/xmlrpc\.php\b.*methodName.*(wp\.getUsersBlogs|system\.multicall|pingback\.ping))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100482'
+- '100826'

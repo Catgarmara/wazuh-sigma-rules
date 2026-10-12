@@ -1,0 +1,23 @@
+title: 'SQL Injection: UNION SELECT or SELECT FROM WHERE pattern detected in URL'
+id: 456f5926-eb53-58ce-b250-5afa92ca31ce
+name: wazuh_100100
+status: experimental
+description: 'SQL Injection: UNION SELECT or SELECT FROM WHERE pattern detected in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\bunion\b.*\bselect\b|\bselect\b.*\bfrom\b.*\bwhere\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100100'
+- '100779'

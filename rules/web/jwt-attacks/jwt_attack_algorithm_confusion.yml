@@ -1,0 +1,23 @@
+title: 'JWT Attack: Algorithm confusion'
+id: 41e23382-38f9-5003-9636-db3b25c945ea
+name: wazuh_100421
+status: experimental
+description: 'JWT Attack: Algorithm confusion — HS256 with RSA public key (key confusion attack).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1550
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '("alg"\s*:\s*"HS256".*"typ"\s*:\s*"JWT".*-----BEGIN\s+(RSA\s+)?PUBLIC\s+KEY)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100421'
+- '100759'

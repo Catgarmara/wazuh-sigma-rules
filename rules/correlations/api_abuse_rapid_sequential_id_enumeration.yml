@@ -1,0 +1,22 @@
+title: 'API Abuse: Rapid sequential ID enumeration'
+id: b6b17235-f4e4-5e84-9077-16a122f38ba9
+name: wazuh_100314
+status: experimental
+description: 'API Abuse: Rapid sequential ID enumeration — automated data harvesting.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100709
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 50
+level: high
+wazuh_rule_id:
+- '100314'
+tags:
+- attack.initial-access
+- attack.t1190

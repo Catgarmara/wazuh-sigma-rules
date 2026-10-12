@@ -1,0 +1,23 @@
+title: 'XXE: XML declaration followed by DOCTYPE'
+id: 226a0bb4-f74a-58e3-b028-1c55d720e44d
+name: wazuh_100847
+status: experimental
+description: 'XXE: XML declaration followed by DOCTYPE — potential XXE payload. (Merges Wazuh rule 100204, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\<\?xml\b[^>]*\?>.*\<!DOCTYPE\b|%3c%3fxml\b.*%3c(%21|!)doctype)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100204'
+- '100847'

@@ -1,0 +1,23 @@
+title: 'Adversary-in-the-Middle: MITM tool execution detected'
+id: b5b45ad5-085d-58bc-8002-1a6ddfdda61f
+name: wazuh_101258
+status: experimental
+description: 'T1557 - Adversary-in-the-Middle: MITM tool execution detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.collection
+- attack.t1557
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsslstrip\b|\bmitmproxy\b|\bbettercap\b.*sniffer|\barpspoof\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101258'

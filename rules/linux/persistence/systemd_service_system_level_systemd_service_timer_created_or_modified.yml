@@ -1,0 +1,23 @@
+title: 'Systemd Service: System-level systemd service/timer created or modified'
+id: 0d102a99-ccc9-525a-840b-cdb40429f697
+name: wazuh_101110
+status: experimental
+description: 'T1543.002 - Systemd Service: System-level systemd service/timer created or modified.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1543.002
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/usr\/lib\/systemd\/system\/.*\.service|\.timer$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101110'

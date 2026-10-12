@@ -1,0 +1,22 @@
+title: 'Remote System Discovery: Network host/neighbor enumeration'
+id: 9f1abb07-9984-5db1-8b17-8d30e344d0a8
+name: wazuh_101302
+status: experimental
+description: 'T1018 - Remote System Discovery: Network host/neighbor enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1018
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\barp\b\s+-[an]|\bip\s+neigh\b|\bnmap\b\s+-s[PpnT]|\bnetdiscover\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101302'

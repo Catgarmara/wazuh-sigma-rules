@@ -1,0 +1,30 @@
+title: 'JWT Attacks: attack pattern returned HTTP 200'
+id: 59420014-bc16-56c8-b7ed-0712d7a93a9b
+name: wazuh_100764
+status: experimental
+description: 'JWT Attacks: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1550
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '("alg"\s*:\s*"HS256".*"typ"\s*:\s*"JWT".*-----BEGIN\s+(RSA\s+)?PUBLIC\s+KEY)'
+    - '("exp"\s*:\s*[0-9]{11,}|"nbf"\s*:\s*0\b|"iat"\s*:\s*0\b)'
+    - '("iss"\s*:\s*"[^"]{100,}"|"sub"\s*:\s*"admin"|"role"\s*:\s*"admin")'
+    - '("jku"\s*:\s*"https?://|"x5u"\s*:\s*"https?://)'
+    - '("kid"\s*:\s*"[^"]*(\.\./|;|\\x|%00|'' OR|UNION))'
+    - '(eyJhbGciOiJub25lIi|"alg"\s*:\s*"none"|"alg"\s*:\s*"None")'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100764'

@@ -1,0 +1,23 @@
+title: 'LFI: Windows system file access attempt'
+id: c466bd1d-5967-5a0e-a626-ce8387a0de32
+name: wazuh_100146
+status: experimental
+description: 'LFI: Windows system file access attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(boot\.ini|win\.ini|system\.ini|\\windows\\system32)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100146'
+- '100775'

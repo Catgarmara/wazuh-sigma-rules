@@ -1,0 +1,22 @@
+title: 'Process Discovery: Process listing command executed'
+id: 51b4f01a-b564-5303-a66d-728f7f4b58d5
+name: wazuh_101306
+status: experimental
+description: 'T1057 - Process Discovery: Process listing command executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1057
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bps\b\s+(aux|ef|axo)|\btop\b\s*$|\bpstree\b|\bhtop\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '101306'

@@ -1,0 +1,16 @@
+title: Binary or TLS bytes on a plain HTTP port
+id: 31f3d014-c13e-5d06-a2d8-fe725da2bd8a
+description: A TLS ClientHello sent to a plain HTTP port is logged by nginx as an escaped byte string with status 400. A stray backtick in the bytes satisfies the command-substitution pattern.
+date: '2026-10-12'
+logsource:
+  category: webserver
+  product: nginx
+filter:
+  rules:
+  - wazuh_100162
+  selection:
+    sc-status: 400
+    'cs-uri-query|re': '^\\x[0-9A-Fa-f]{2}'
+  condition: not selection
+wazuh_rule_id:
+- '100987'

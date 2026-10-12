@@ -1,0 +1,22 @@
+title: 'Disk Wipe: Filesystem format or partition deletion detected'
+id: 56e12fa0-6367-5cff-8c41-c3fc03d9934b
+name: wazuh_101558
+status: experimental
+description: 'T1561 - Disk Wipe: Filesystem format or partition deletion detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1561
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bmkfs\b\s+\/dev\/|\bfdisk\b\s+\/dev\/.*-d|\bparted\b\s+.*rm\s+\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: critical
+wazuh_rule_id:
+- '101558'

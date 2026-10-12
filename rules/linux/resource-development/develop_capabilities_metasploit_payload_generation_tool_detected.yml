@@ -1,0 +1,22 @@
+title: 'Develop Capabilities: Metasploit payload generation tool detected'
+id: 313f1e00-2895-5d5b-904e-8c1cf702a10c
+name: wazuh_101650
+status: experimental
+description: 'T1587.001 - Develop Capabilities: Metasploit payload generation tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.resource-development
+- attack.t1587.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bmsfvenom\b|\bmsfconsole\b|\bmsfpayload\b|\bmsfencode\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101650'

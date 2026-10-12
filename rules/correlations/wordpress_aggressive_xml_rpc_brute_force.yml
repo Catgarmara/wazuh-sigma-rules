@@ -1,0 +1,22 @@
+title: 'WordPress: Aggressive XML-RPC brute force'
+id: e68edcac-7d7c-5191-8093-5f36a87126b4
+name: wazuh_100483
+status: experimental
+description: 'WordPress: Aggressive XML-RPC brute force — automated attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100482
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 15
+level: high
+wazuh_rule_id:
+- '100483'
+tags:
+- attack.credential-access
+- attack.t1110

@@ -1,0 +1,32 @@
+title: 'Discovery: Multiple reconnaissance commands in rapid succession'
+id: 2c72f262-1d0b-5cf4-a1ac-588da8e95f77
+name: wazuh_101310
+status: experimental
+description: 'Discovery: Multiple reconnaissance commands in rapid succession — post-exploitation enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  type: event_count
+  rules:
+  - wazuh_101300
+  - wazuh_101301
+  - wazuh_101302
+  - wazuh_101303
+  - wazuh_101304
+  - wazuh_101305
+  - wazuh_101306
+  - wazuh_101307
+  - wazuh_101308
+  - wazuh_101309
+  - wazuh_101311
+  group-by:
+  - User
+  timespan: 120s
+  condition:
+    gte: 8
+level: high
+wazuh_rule_id:
+- '101310'
+tags:
+- attack.discovery
+- attack.t1082

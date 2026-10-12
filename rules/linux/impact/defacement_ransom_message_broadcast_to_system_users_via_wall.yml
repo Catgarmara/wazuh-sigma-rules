@@ -1,0 +1,22 @@
+title: 'Defacement: Ransom message broadcast to system users via wall'
+id: 3ab48ebf-9a71-5082-b09b-92c6f270401b
+name: wazuh_101562
+status: experimental
+description: 'T1491 - Defacement: Ransom message broadcast to system users via wall.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1491
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bwall\b\s+.*ransom|\bwall\b\s+.*bitcoin|\bwall\b\s+.*pay\s+\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101562'

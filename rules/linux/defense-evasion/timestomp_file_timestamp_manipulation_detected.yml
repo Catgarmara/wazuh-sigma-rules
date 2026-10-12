@@ -1,0 +1,22 @@
+title: 'Timestomp: File timestamp manipulation detected'
+id: 2efac73d-2550-533c-adb1-bb8037dc6a0d
+name: wazuh_101206
+status: experimental
+description: 'T1070.006 - Timestomp: File timestamp manipulation detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1070.006
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\btouch\b\s+-[amdrt]\s+.*\d{12}|\btimestomp\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101206'

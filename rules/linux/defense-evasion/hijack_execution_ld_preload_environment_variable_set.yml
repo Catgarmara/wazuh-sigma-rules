@@ -1,0 +1,23 @@
+title: 'Hijack Execution: LD_PRELOAD environment variable set'
+id: d153d98b-3c6a-5b86-9986-43b4ed26b80a
+name: wazuh_101210
+status: experimental
+description: 'T1574.006 - Hijack Execution: LD_PRELOAD environment variable set — library injection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.execution
+- attack.t1574.006
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bLD_PRELOAD\b=|\/etc\/ld\.so\.preload\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101210'

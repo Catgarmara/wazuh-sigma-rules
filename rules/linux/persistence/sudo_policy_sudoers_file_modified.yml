@@ -1,0 +1,22 @@
+title: 'Sudo Policy: Sudoers file modified'
+id: 27331327-456b-5421-947b-d2f5badaf2d7
+name: wazuh_101107
+status: experimental
+description: 'T1548.003 - Sudo Policy: Sudoers file modified — privilege persistence.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1548.003
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/sudoers$|\/etc\/sudoers\.d\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101107'

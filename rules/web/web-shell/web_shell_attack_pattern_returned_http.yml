@@ -1,0 +1,31 @@
+title: 'Web Shell: attack pattern returned HTTP 200'
+id: 60f3ce80-b621-58e7-ab9f-cf403099cad1
+name: wazuh_100823
+status: experimental
+description: 'Web Shell: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\.php\.(jpg|png|gif|bmp|txt)|\.asp\.(jpg|png)|\.jsp\.(jpg|png))'
+    - '(\/uploads?\/[^/]*\.(php|asp|aspx|jsp|cgi)|\/images?\/[^/]*\.(php|asp|aspx))'
+    - '(\bbase64_decode\s*\(|\bgzinflate\s*\(|\bstr_rot13\s*\(|\bgzuncompress\s*\()'
+    - '(\bcmd\s*=|\bexec\s*=|\bcommand\s*=|\bshell\s*=|\baction\s*=cmd)'
+    - '(\beval\s*\(\s*\$_(GET|POST|REQUEST|COOKIE)|\bsystem\s*\(\s*\$_(GET|POST|REQUEST))'
+    - '(\bpassthru\s*\(|\bshell_exec\s*\(|\bpopen\s*\(|\bproc_open\s*\()'
+    - '(c99\.php|r57\.php|wso\.php|b374k|weevely|alfa\.php|adminer\.php)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100823'

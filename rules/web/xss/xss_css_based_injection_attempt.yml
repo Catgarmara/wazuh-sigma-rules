@@ -1,0 +1,23 @@
+title: 'XSS: CSS-based injection attempt'
+id: 09747120-17a0-5b2d-b566-2874bee6494f
+name: wazuh_100127
+status: experimental
+description: 'XSS: CSS-based injection attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(%3cstyle.*(expression|behavior|url)\s*\(|%3clink.*(expression|behavior|url)\s*\(|%253cstyle.*(expression|behavior|url)\s*\(|%253clink.*(expression|behavior|url)\s*\()'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100127'
+- '100840'

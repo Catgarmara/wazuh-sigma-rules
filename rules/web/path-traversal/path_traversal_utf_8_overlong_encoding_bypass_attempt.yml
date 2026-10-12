@@ -1,0 +1,23 @@
+title: 'Path Traversal: UTF-8 overlong encoding bypass attempt'
+id: af2ea9ec-8edc-5ea8-a4a6-4f96ae30dc0c
+name: wazuh_100181
+status: experimental
+description: 'Path Traversal: UTF-8 overlong encoding bypass attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1083
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.\.%c0%af|\.\.%c1%9c|%c0%ae%c0%ae)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100181'
+- '100701'

@@ -1,0 +1,22 @@
+title: 'Kerberoasting: Kerberos ticket extraction tool detected'
+id: b3306f44-8023-5460-ab86-1fcc261431ea
+name: wazuh_101259
+status: experimental
+description: 'T1558.003 - Kerberoasting: Kerberos ticket extraction tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.t1558.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bkerberoast\b|\bGetUserSPNs\b|\bRubeus\b.*kerberoast|\basreproast\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101259'

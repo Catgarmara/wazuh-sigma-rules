@@ -1,0 +1,23 @@
+title: 'XSS: Tag with event handler injection'
+id: 2a89667c-0454-5549-9660-a0dec1c29324
+name: wazuh_100124
+status: experimental
+description: 'XSS: Tag with event handler injection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(%3cimg.*onerror|%3csvg.*onload|%3cbody.*onload|%253cimg.*onerror|%253csvg.*onload|%253cbody.*onload)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100124'
+- '100837'

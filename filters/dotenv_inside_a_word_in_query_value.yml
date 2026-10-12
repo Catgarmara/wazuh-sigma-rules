@@ -1,0 +1,16 @@
+title: .env inside a word in a query value is not a dotenv file
+id: cac4463b-39de-5197-9f7c-8e03ff8dd333
+description: 'Excludes requests where ".env" only appears inside a word in a query value (for example an e-mail local part). Kept: any ".env" in the path, a ".env" at a word boundary, and any htaccess/htpasswd/wp-config.php/web.config
+  reference.'
+date: '2026-10-12'
+logsource:
+  category: webserver
+  product: nginx
+filter:
+  rules:
+  - wazuh_100147
+  selection:
+    'cs-uri-query|re|i': '^(?![^?]*\.env)(?!.*(\.htaccess|\.htpasswd|wp-config\.php|web\.config))(?!.*(^|[^a-z0-9])\.env)(?!.*\.env(?![a-z0-9]))'
+  condition: not selection
+wazuh_rule_id:
+- '100988'

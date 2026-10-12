@@ -1,0 +1,23 @@
+title: 'SSTI: FreeMarker/Thymeleaf template expression injection'
+id: 1c27e132-66c7-516b-a8dc-05043597904b
+name: wazuh_100384
+status: experimental
+description: 'SSTI: FreeMarker/Thymeleaf template expression injection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(#\{.*\}|<#assign\b|\bnew\s+freemarker\.)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100384'
+- '100804'

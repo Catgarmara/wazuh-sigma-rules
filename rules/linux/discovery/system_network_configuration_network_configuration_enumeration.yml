@@ -1,0 +1,22 @@
+title: 'System Network Configuration: Network configuration enumeration'
+id: 350a6336-e63b-5ae9-84d7-b8209498836a
+name: wazuh_101301
+status: experimental
+description: 'T1016 - System Network Configuration: Network configuration enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1016
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bifconfig\b|\bip\s+(addr|link|route)\b|\bnetstat\b\s+-[antlpu]|\bss\b\s+-[antlpu])'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '101301'

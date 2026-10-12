@@ -1,0 +1,22 @@
+title: 'Exfiltration to Cloud Storage: rclone transfer to cloud provider'
+id: 4931d38d-04a0-5ca1-b3a2-84fcb878ff05
+name: wazuh_101503
+status: experimental
+description: 'T1567.002 - Exfiltration to Cloud Storage: rclone transfer to cloud provider.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1567.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\brclone\b\s+(copy|sync|move)\s+.*\s+(s3:|gcs:|b2:|mega:|onedrive:))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101503'

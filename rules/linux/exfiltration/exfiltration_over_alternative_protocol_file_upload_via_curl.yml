@@ -1,0 +1,22 @@
+title: 'Exfiltration Over Alternative Protocol: File upload via curl'
+id: f35629a8-2bb5-56c0-a599-db8af51522fb
+name: wazuh_101500
+status: experimental
+description: 'T1048 - Exfiltration Over Alternative Protocol: File upload via curl.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1048
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcurl\b\s+.*-T\s+|\bcurl\b\s+.*--upload-file\s+|\bcurl\b\s+.*-d\s+@)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101500'

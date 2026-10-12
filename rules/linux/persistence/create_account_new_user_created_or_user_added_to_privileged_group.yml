@@ -1,0 +1,22 @@
+title: 'Create Account: New user created or user added to privileged group'
+id: ac8aef58-a448-5636-8bc4-0ee17ae267b6
+name: wazuh_101106
+status: experimental
+description: 'T1136.001 - Create Account: New user created or user added to privileged group.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1136.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\buseradd\b|\badduser\b|\busermod\b.*-aG\s+(sudo|wheel|root|admin))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101106'

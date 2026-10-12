@@ -1,0 +1,55 @@
+name: Wazuh alerts index (nginx access log + Linux auth/sudo/FIM)
+priority: 20
+transformations:
+  # nginx access log. Two Wazuh decoders feed the same rules:
+  #   plaintext combined log (web-accesslog): data.url, data.id, data.srcip, data.protocol
+  #   JSON log (json decoder):               data.requesturi, data.code, data.remote, data.method
+  # Each taxonomy field maps to both; the backend ORs them.
+  - id: wazuh_webserver_fields
+    type: field_name_mapping
+    mapping:
+      cs-uri-query: [data.url, data.requesturi]
+      sc-status: [data.id, data.code]
+      c-ip: [data.srcip, data.remote]
+      cs-method: [data.protocol, data.method]
+      cs-user-agent: data.agent
+      cs-host: data.servername
+      cs-uri-stem: data.uri
+    rule_conditions:
+      - type: logsource
+        category: webserver
+  - id: wazuh_sudo_fields
+    type: field_name_mapping
+    mapping:
+      CommandLine: full_log
+      User: data.srcuser
+    rule_conditions:
+      - type: logsource
+        product: linux
+        service: sudo
+  - id: wazuh_sshd_fields
+    type: field_name_mapping
+    mapping:
+      Message: full_log
+      c-ip: data.srcip
+      User: data.dstuser
+    rule_conditions:
+      - type: logsource
+        product: linux
+        service: sshd
+  - id: wazuh_fim_fields
+    type: field_name_mapping
+    mapping:
+      TargetFilename: syscheck.path
+      User: syscheck.uname_after
+    rule_conditions:
+      - type: logsource
+        category: file_event
+        product: linux
+  - id: wazuh_linux_message
+    type: field_name_mapping
+    mapping:
+      Message: full_log
+    rule_conditions:
+      - type: logsource
+        product: linux

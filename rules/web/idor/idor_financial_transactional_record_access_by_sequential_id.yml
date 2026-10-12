@@ -1,0 +1,23 @@
+title: 'IDOR: Financial/transactional record access by sequential ID'
+id: 3a846cae-6297-5e0c-bb51-5cfbd974a103
+name: wazuh_100756
+status: experimental
+description: 'IDOR: Financial/transactional record access by sequential ID. (Merges Wazuh rule 100403, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/.*\/(order|invoice|receipt|ticket)\/\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100403'
+- '100756'

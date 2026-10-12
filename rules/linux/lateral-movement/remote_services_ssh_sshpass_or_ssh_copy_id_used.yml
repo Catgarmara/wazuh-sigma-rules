@@ -1,0 +1,22 @@
+title: 'Remote Services: SSH: sshpass or ssh-copy-id used'
+id: 2b3c9ff5-fb13-5657-ae44-aec84b1f011e
+name: wazuh_101351
+status: experimental
+description: 'T1021.004 - Remote Services: SSH: sshpass or ssh-copy-id used — credential relay.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsshpass\b\s+-p\s+|\bssh-copy-id\b\s+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101351'

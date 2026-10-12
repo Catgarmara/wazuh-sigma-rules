@@ -1,0 +1,22 @@
+title: 'Stored Data Manipulation: DNS configuration file modified'
+id: 993ba962-5e51-560a-a46e-0c7fa64eaac9
+name: wazuh_101208
+status: experimental
+description: 'T1565.001 - Stored Data Manipulation: DNS configuration file modified.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1565.001
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/hosts$|\/etc\/resolv\.conf$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101208'

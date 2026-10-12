@@ -1,0 +1,26 @@
+title: 'HTTP Response Splitting: attack pattern returned HTTP 200'
+id: 1f96f5ff-d165-5780-9274-1b6bccc5ca1c
+name: wazuh_100748
+status: experimental
+description: 'HTTP Response Splitting: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(%0d%0a){2}(%3chtml|%3cscript|%3cbody|%253chtml|%253cscript|%253cbody)'
+    - '(%0d%0a|%0d|%0a)(set-cookie|location|content-type)%3a'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100748'

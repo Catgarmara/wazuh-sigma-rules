@@ -1,0 +1,22 @@
+title: 'Remote Desktop: RDP client tool executed'
+id: b2b92613-71ed-5590-8e8a-334a64084184
+name: wazuh_101354
+status: experimental
+description: 'T1021.001 - Remote Desktop: RDP client tool executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\brdp\b|\bxfreerdp\b|\brdesktop\b|\bmstsc\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101354'

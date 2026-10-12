@@ -1,0 +1,22 @@
+title: 'PowerShell: Encoded command execution detected'
+id: f6023d95-2e77-59bd-9fa1-2081145afce4
+name: wazuh_101050
+status: experimental
+description: 'T1059.001 - PowerShell: Encoded command execution detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bpowershell\b.*(-enc|-encodedcommand|-e\s+[A-Za-z0-9+/=]{20,}))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101050'

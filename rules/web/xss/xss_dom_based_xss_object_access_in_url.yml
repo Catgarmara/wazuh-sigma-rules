@@ -1,0 +1,23 @@
+title: 'XSS: DOM-based XSS object access in URL'
+id: 79f2626b-706f-51cf-9fa2-2c2033fb4425
+name: wazuh_100125
+status: experimental
+description: 'XSS: DOM-based XSS object access in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(document\.(cookie|domain|write|location)|window\.(location|open))'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100125'
+- '100838'

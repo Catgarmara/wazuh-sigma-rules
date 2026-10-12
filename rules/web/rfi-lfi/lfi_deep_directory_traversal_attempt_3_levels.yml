@@ -1,0 +1,23 @@
+title: 'LFI: Deep directory traversal attempt (3+ levels)'
+id: bb2513f9-efd5-5e6e-9aba-9b01bdc6da2c
+name: wazuh_100143
+status: experimental
+description: 'LFI: Deep directory traversal attempt (3+ levels).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.\.\/(\.\.\/){2,}|(\%2e){2}(\%2f|\%5c))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100143'
+- '100772'

@@ -1,0 +1,23 @@
+title: 'Deserialization: Python pickle/YAML deserialization pattern detected'
+id: 0a2ab9c8-4080-578c-ac46-7848691fe7d0
+name: wazuh_100362
+status: experimental
+description: 'Deserialization: Python pickle/YAML deserialization pattern detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(__reduce__|__setstate__|cPickle|pickle\.loads|yaml\.load)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100362'
+- '100735'

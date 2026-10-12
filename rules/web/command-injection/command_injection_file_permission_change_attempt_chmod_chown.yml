@@ -1,0 +1,23 @@
+title: 'Command Injection: File permission change attempt (chmod/chown)'
+id: 495a20b9-6f0c-5f07-abf6-31654dc75105
+name: wazuh_100168
+status: experimental
+description: 'Command Injection: File permission change attempt (chmod/chown).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(?:^|[^a-z0-9_]|%[0-9a-f]{2})chmod(?:\s|%20|\+|%09)+[0-7]{3,4}\b|(?:^|[^a-z0-9_]|%[0-9a-f]{2})chown(?:\s|%20|\+|%09)+\w+(?::|%3a)\w+'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100168'
+- '100724'

@@ -1,0 +1,23 @@
+title: 'SQL Injection: CAST/CONVERT type coercion detected in URL'
+id: 29b536e8-86e0-5c53-8876-71f743370458
+name: wazuh_100110
+status: experimental
+description: 'SQL Injection: CAST/CONVERT type coercion detected in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\bcast\s*\(.*\bas\b|\bconvert\s*\()'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100110'
+- '100788'

@@ -1,0 +1,22 @@
+title: 'PowerShell: Suspicious cmdlet execution (IEX/Invoke-WebRequest)'
+id: bcde5110-4160-5099-bf44-95acac7926e7
+name: wazuh_101051
+status: experimental
+description: 'T1059.001 - PowerShell: Suspicious cmdlet execution (IEX/Invoke-WebRequest).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bpowershell\b.*(Invoke-Expression|IEX|Invoke-WebRequest|Invoke-Mimikatz|Invoke-Shellcode))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101051'

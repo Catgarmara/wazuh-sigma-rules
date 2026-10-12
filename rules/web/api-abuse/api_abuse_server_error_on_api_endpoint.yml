@@ -1,0 +1,24 @@
+title: 'API Abuse: Server error on API endpoint'
+id: 38c6e220-ff2b-5449-b880-cb4d4ce7bb10
+name: wazuh_100710
+status: experimental
+description: 'API Abuse: Server error on API endpoint — possible malformed input fuzzing. (Merges Wazuh rule 100315, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/)'
+    'sc-status|startswith': '5'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100315'
+- '100710'

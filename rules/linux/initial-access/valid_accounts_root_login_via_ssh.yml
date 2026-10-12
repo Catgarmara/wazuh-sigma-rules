@@ -1,0 +1,25 @@
+title: 'Valid Accounts: Root login via SSH'
+id: 5f6ec772-89e7-574e-b77a-63260d87a4c3
+name: wazuh_101012
+status: experimental
+description: 'T1078.003 - Valid Accounts: Root login via SSH — high-privilege access.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.persistence
+- attack.privilege-escalation
+- attack.initial-access
+- attack.t1078.003
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    'Message|re|i': '(Accepted\s+(password|publickey)\s+for\s+root\s+from)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101012'

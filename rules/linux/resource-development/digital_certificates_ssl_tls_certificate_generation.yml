@@ -1,0 +1,22 @@
+title: 'Digital Certificates: SSL/TLS certificate generation'
+id: e333ee8d-d93c-5bb3-9735-24fd32252ffc
+name: wazuh_101656
+status: experimental
+description: 'T1587.003 - Digital Certificates: SSL/TLS certificate generation — potential C2 infrastructure.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.resource-development
+- attack.t1587.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcertbot\b\s+certonly|\bopenssl\b\s+req\s+-new.*-subj|\bacme\.sh\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101656'

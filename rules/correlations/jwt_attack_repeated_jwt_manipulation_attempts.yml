@@ -1,0 +1,22 @@
+title: 'JWT Attack: Repeated JWT manipulation attempts'
+id: af60c3be-38d4-5534-946b-1987d19fddd9
+name: wazuh_100426
+status: experimental
+description: 'JWT Attack: Repeated JWT manipulation attempts — active token exploitation.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100420
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 5
+level: high
+wazuh_rule_id:
+- '100426'
+tags:
+- attack.lateral-movement
+- attack.t1550

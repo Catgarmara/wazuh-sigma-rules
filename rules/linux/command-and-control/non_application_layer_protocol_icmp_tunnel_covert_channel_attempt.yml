@@ -1,0 +1,22 @@
+title: 'Non-Application Layer Protocol: ICMP tunnel/covert channel attempt'
+id: 8b107114-5d50-54c1-ad68-2906b4e02257
+name: wazuh_101459
+status: experimental
+description: 'T1095 - Non-Application Layer Protocol: ICMP tunnel/covert channel attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1095
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bping\b\s+-[cst]\s+.*-p\s+[0-9a-f]{16,}|\bicmpsh\b|\bicmpx\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101459'

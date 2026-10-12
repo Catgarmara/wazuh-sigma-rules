@@ -1,0 +1,22 @@
+title: 'Endpoint DoS: Resource exhaustion or fork bomb detected'
+id: 09a44524-b17a-50ec-9401-3e1c60043518
+name: wazuh_101559
+status: experimental
+description: 'T1499 - Endpoint DoS: Resource exhaustion or fork bomb detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1499
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\b(stress|stress-ng|hping3)\b.*--flood|\bfork\s*bomb\b|:\(\)\{\s*:\|:&\s*\};:)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101559'

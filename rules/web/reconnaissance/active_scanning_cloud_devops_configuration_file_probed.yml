@@ -1,0 +1,22 @@
+title: 'Active Scanning: Cloud/DevOps configuration file probed'
+id: 18153d91-104a-5ac3-9436-83e81cc772ae
+name: wazuh_101607
+status: experimental
+description: 'T1595 - Active Scanning: Cloud/DevOps configuration file probed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/\.env|\/config\.yml|\/docker-compose\.yml|\/Dockerfile|\/\.aws\/credentials)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101607'

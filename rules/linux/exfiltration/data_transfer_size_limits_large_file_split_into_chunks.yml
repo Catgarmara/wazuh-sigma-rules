@@ -1,0 +1,22 @@
+title: 'Data Transfer Size Limits: Large file split into chunks'
+id: 15b13450-76c7-5ea1-b8d5-cba2cb6240ba
+name: wazuh_101508
+status: experimental
+description: 'T1030 - Data Transfer Size Limits: Large file split into chunks — staged exfiltration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1030
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsplit\b\s+(-b|-l)\s+.*\.(tar|zip|gz|sql|db|csv|dump))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101508'

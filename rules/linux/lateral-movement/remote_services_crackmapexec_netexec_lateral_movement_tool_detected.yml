@@ -1,0 +1,22 @@
+title: 'Remote Services: CrackMapExec/NetExec lateral movement tool detected'
+id: ae0ba7e9-d83e-5b97-911f-12cca20d63b8
+name: wazuh_101356
+status: experimental
+description: 'T1021 - Remote Services: CrackMapExec/NetExec lateral movement tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcrackmapexec\b|\bcme\b\s+(smb|winrm|ssh|mssql|ldap)|\bnetexec\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101356'

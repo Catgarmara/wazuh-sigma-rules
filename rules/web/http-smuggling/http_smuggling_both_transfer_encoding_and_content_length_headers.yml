@@ -1,0 +1,23 @@
+title: 'HTTP Smuggling: Both Transfer-Encoding and Content-Length headers'
+id: 365945b8-cabc-563c-a51a-10e09b1cbf47
+name: wazuh_100250
+status: experimental
+description: 'HTTP Smuggling: Both Transfer-Encoding and Content-Length headers — CL.TE/TE.CL attack.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(Transfer-Encoding\s*:\s*chunked.*Content-Length|Content-Length.*Transfer-Encoding\s*:\s*chunked)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100250'
+- '100749'

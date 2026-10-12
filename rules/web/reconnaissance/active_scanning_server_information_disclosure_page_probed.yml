@@ -1,0 +1,22 @@
+title: 'Active Scanning: Server information disclosure page probed'
+id: 7a52cf3a-1853-55e0-89cb-ea6564d52e70
+name: wazuh_101601
+status: experimental
+description: 'T1595 - Active Scanning: Server information disclosure page probed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/server-info|\/server-status|\/phpinfo\.php|\/info\.php)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101601'

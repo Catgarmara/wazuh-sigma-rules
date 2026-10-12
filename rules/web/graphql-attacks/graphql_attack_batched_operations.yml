@@ -1,0 +1,23 @@
+title: 'GraphQL Attack: Batched operations'
+id: 6a1e32e7-8b75-5586-8b87-a2b22c78b5d2
+name: wazuh_100442
+status: experimental
+description: 'GraphQL Attack: Batched operations — potential batch brute force or DoS.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1499
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(mutation\s*\{.*\bmutation\s*\{|query\s*\{.*\bquery\s*\{)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100442'
+- '100741'

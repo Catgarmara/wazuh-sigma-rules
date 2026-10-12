@@ -1,0 +1,22 @@
+title: 'Disable Security: UFW/firewalld disabled or SELinux set to permissive'
+id: afc22f4e-6605-5dfd-844f-11cf0bbe1ba3
+name: wazuh_101204
+status: experimental
+description: 'T1562.004 - Disable Security: UFW/firewalld disabled or SELinux set to permissive.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.t1686
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bufw\b\s+disable|\bfirewalld\b.*stop|\bsetenforce\b\s+0)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101204'

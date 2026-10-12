@@ -1,0 +1,22 @@
+title: 'SMB Shares: SMB/CIFS share mounting or access'
+id: 0d18a9e1-747d-5f55-af64-ea3682820415
+name: wazuh_101357
+status: experimental
+description: 'T1021.002 - SMB Shares: SMB/CIFS share mounting or access.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsmbclient\b\s+\/\/|\bmount\b\s+-t\s+cifs|\bnet\b\s+use\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101357'

@@ -1,0 +1,23 @@
+title: 'SSTI: Template expression syntax detected in URL (Jinja2/Twig/FreeMarker)'
+id: 767a48ea-dc78-5985-a5d9-699a8aea83db
+name: wazuh_100380
+status: experimental
+description: 'SSTI: Template expression syntax detected in URL (Jinja2/Twig/FreeMarker).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\{\{.*\}\}|\{%.*%\}|\$\{.*\})'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100380'
+- '100800'

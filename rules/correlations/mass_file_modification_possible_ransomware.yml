@@ -1,0 +1,20 @@
+title: 'Data Encrypted for Impact: Mass file modification outside system directories'
+id: 3b0c460e-cd87-5fb6-81fa-0ade21731842
+name: wazuh_101555
+status: experimental
+description: '50 or more FIM events outside system directories in 60 seconds. Possible ransomware. The Wazuh rule counted across all agents (no same_* key); this keeps that scope.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  type: event_count
+  rules:
+  - wazuh_101555_base
+  timespan: 60s
+  condition:
+    gte: 50
+tags:
+- attack.impact
+- attack.t1486
+level: high
+wazuh_rule_id:
+- '101555'

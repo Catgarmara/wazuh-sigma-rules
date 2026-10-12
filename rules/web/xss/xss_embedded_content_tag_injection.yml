@@ -1,0 +1,23 @@
+title: 'XSS: Embedded content tag injection'
+id: 624092ba-98b5-5cad-9568-4cb96bad4fc8
+name: wazuh_100123
+status: experimental
+description: 'XSS: Embedded content tag injection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(%3ciframe|%3cembed|%3cobject|%3capplet|%253ciframe|%253cembed|%253cobject|%253capplet)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100123'
+- '100836'

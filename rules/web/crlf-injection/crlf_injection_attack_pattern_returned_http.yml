@@ -1,0 +1,26 @@
+title: 'CRLF Injection: attack pattern returned HTTP 200'
+id: 85ad1528-df23-5239-a989-3ba878e5e744
+name: wazuh_100728
+status: experimental
+description: 'CRLF Injection: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack_cased:
+    'cs-uri-query|re':
+    - '%0[dD]%0[aA](X-Forwarded|X-Custom|X-Injected|Set-Cookie)'
+    - '%0[dD]%0[aA]|%0[dD]|%0[aA]'
+  selection_success:
+    sc-status: 200
+  condition: '1 of selection_attack* and selection_success'
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100728'

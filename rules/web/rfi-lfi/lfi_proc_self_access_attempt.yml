@@ -1,0 +1,23 @@
+title: 'LFI: /proc/self access attempt'
+id: 4834a644-8f76-55fb-969e-0d9227ffeb04
+name: wazuh_100145
+status: experimental
+description: 'LFI: /proc/self access attempt — information disclosure.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/proc\/self\/(environ|cmdline|fd|maps|status))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100145'
+- '100774'

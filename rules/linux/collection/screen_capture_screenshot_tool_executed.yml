@@ -1,0 +1,22 @@
+title: 'Screen Capture: Screenshot tool executed'
+id: 2b3b5860-ea0c-5de9-b7ed-c186bd0dfe99
+name: wazuh_101403
+status: experimental
+description: 'T1113 - Screen Capture: Screenshot tool executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1113
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bscreenshot\b|\bscrot\b|\bxwd\b|\bimport\b\s+-window\s+root|\bgnome-screenshot\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101403'

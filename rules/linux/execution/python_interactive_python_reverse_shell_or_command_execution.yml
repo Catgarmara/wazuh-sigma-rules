@@ -1,0 +1,22 @@
+title: 'Python: Interactive Python reverse shell or command execution'
+id: a745417c-88bf-5c8a-8613-45565a572150
+name: wazuh_101054
+status: experimental
+description: 'T1059.006 - Python: Interactive Python reverse shell or command execution.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059.006
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bpython[23]?\b\s+-c\s+[''"]import\s+(socket|subprocess|os|pty))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101054'

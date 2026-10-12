@@ -1,0 +1,22 @@
+title: 'Non-Application Layer Protocol: Reverse/bind shell via netcat/socat'
+id: 88151f0c-16f6-5abd-ab28-d248ee3f64fe
+name: wazuh_101450
+status: experimental
+description: 'T1095 - Non-Application Layer Protocol: Reverse/bind shell via netcat/socat.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1095
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bnc\b\s+-[elp].*\d+|\bncat\b\s+--exec|\bsocat\b\s+TCP.*EXEC)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101450'

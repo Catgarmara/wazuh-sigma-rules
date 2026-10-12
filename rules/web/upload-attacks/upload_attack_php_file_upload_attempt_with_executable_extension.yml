@@ -1,0 +1,23 @@
+title: 'Upload Attack: PHP file upload attempt with executable extension'
+id: bd51d751-b03e-591f-831c-1283739783c4
+name: wazuh_100460
+status: experimental
+description: 'Upload Attack: PHP file upload attempt with executable extension.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(upload|file_upload|import).*\.(php[3-8]?|phtml|phar|php\.jpg)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100460'
+- '100807'

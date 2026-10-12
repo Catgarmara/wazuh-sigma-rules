@@ -1,0 +1,23 @@
+title: 'Command Injection: Backtick or $() command substitution detected'
+id: 8f5d0465-c8a7-5b00-8661-6e0ed18e82ec
+name: wazuh_100162
+status: experimental
+description: 'Command Injection: Backtick or $() command substitution detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(`[^`]*`|\$\([^)]*\))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100162'
+- '100718'

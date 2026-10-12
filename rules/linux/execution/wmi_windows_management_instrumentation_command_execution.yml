@@ -1,0 +1,22 @@
+title: 'WMI: Windows Management Instrumentation command execution'
+id: a362b842-9484-58b2-abac-76e73e0b0f7c
+name: wazuh_101058
+status: experimental
+description: 'T1047 - WMI: Windows Management Instrumentation command execution.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1047
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bwmic\b\s+(process\s+call\s+create|os\s+get|useraccount))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101058'

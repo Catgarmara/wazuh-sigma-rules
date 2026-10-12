@@ -1,0 +1,22 @@
+title: 'Web Protocols: Large encoded cookie in HTTP request'
+id: 1131ef30-3ec2-5481-9a69-ebbdbb2ed14c
+name: wazuh_101456
+status: experimental
+description: 'T1071.001 - Web Protocols: Large encoded cookie in HTTP request — C2 data channel.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1071.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcurl\b.*-H\s+.*Cookie:.*=\s*[A-Za-z0-9+/=]{50,}|\bwget\b.*--header.*Cookie:.*[A-Za-z0-9+/=]{50,})'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101456'

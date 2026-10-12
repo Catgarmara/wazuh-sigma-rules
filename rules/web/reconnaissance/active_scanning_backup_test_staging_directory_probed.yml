@@ -1,0 +1,22 @@
+title: 'Active Scanning: Backup/test/staging directory probed'
+id: 7a4df351-7459-5438-a914-4341282bb3f2
+name: wazuh_101604
+status: experimental
+description: 'T1595 - Active Scanning: Backup/test/staging directory probed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/(backup|bak|old|temp|tmp|test|dev|staging|debug|_debug)\/(|$))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101604'

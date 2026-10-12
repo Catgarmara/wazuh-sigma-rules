@@ -1,0 +1,23 @@
+title: 'Network Sniffing: Packet capture to file initiated'
+id: 3e7f390a-b586-5961-a63f-d76a15340460
+name: wazuh_101404
+status: experimental
+description: 'T1040 - Network Sniffing: Packet capture to file initiated.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.discovery
+- attack.t1040
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\btcpdump\b\s+-w|\btshark\b\s+-w|\bdumpcap\b\s+-w)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101404'

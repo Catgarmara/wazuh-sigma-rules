@@ -1,0 +1,22 @@
+title: 'SMB/Admin Shares: Remote execution tool detected (PsExec/WMI/SMB)'
+id: 82ef8d39-4e82-55f2-ab7b-8b133db9edde
+name: wazuh_101353
+status: experimental
+description: 'T1021.002 - SMB/Admin Shares: Remote execution tool detected (PsExec/WMI/SMB).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bpsexec\b|\bwinexe\b|\bwmiexec\b|\bsmbexec\b|\batexec\b|\bdcomexec\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101353'

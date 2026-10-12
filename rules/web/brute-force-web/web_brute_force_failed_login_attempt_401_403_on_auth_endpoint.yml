@@ -1,0 +1,26 @@
+title: 'Web Brute Force: Failed login attempt (401/403 on auth endpoint)'
+id: 632fbd08-652b-5250-b854-d4b619d8eae8
+name: wazuh_100270
+status: experimental
+description: 'Web Brute Force: Failed login attempt (401/403 on auth endpoint).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.t1110
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/login|\/signin|\/auth|\/authenticate|\/session)'
+    sc-status:
+    - 401
+    - 403
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100270'
+- '100712'

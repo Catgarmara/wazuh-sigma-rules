@@ -1,0 +1,21 @@
+name: check
+on: [push, pull_request]
+jobs:
+  sigma:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install sigma-cli==3.1.0 pySigma-backend-opensearch==2.0.3 pyyaml regex
+      - name: sigma check (rules + correlations)
+        run: sigma check --fail-on-issues rules
+      - name: sigma check (filters)
+        run: sigma check --fail-on-issues filters
+      - name: convert detections
+        run: sigma convert -t opensearch_lucene -p pipelines/wazuh.yml --filter filters rules/web rules/linux > /dev/null
+      - name: replay tests
+        run: python3 tests/run_tests.py
+      - name: no private addresses
+        run: bash tools/sanitize_check.sh .

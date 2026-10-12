@@ -1,0 +1,22 @@
+title: 'System Information Discovery: Disk/mount enumeration'
+id: 073011bf-8677-50dd-9952-94a3975d8c08
+name: wazuh_101307
+status: experimental
+description: 'T1082 - System Information Discovery: Disk/mount enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1082
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bdf\b\s+-[hT]|\blsblk\b|\bfdisk\b\s+-l|\bmount\b\s*$|\bfindmnt\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '101307'

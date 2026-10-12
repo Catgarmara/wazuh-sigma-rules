@@ -1,0 +1,22 @@
+title: 'Create Account: User/group database file modified'
+id: 19bc7c3f-373e-5525-bd12-9dfc62cc296d
+name: wazuh_101105
+status: experimental
+description: 'T1136.001 - Create Account: User/group database file modified.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1136.001
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/passwd$|\/etc\/shadow$|\/etc\/group$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101105'

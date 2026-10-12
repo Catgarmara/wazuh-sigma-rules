@@ -1,0 +1,23 @@
+title: 'IDOR: File/attachment access via sequential numeric ID'
+id: a7292b30-17c8-5db2-8d9a-f2f5b1a8f8fd
+name: wazuh_100755
+status: experimental
+description: 'IDOR: File/attachment access via sequential numeric ID. (Merges Wazuh rule 100402, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/.*\/(download|export|attachment|file)\/\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100402'
+- '100755'

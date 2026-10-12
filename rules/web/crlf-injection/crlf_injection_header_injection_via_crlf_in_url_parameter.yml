@@ -1,0 +1,23 @@
+title: 'CRLF Injection: Header injection via CRLF in URL parameter'
+id: a7cb987f-01cf-5d4a-acb1-fdd4528f76d3
+name: wazuh_100351
+status: experimental
+description: 'CRLF Injection: Header injection via CRLF in URL parameter.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re': '%0[dD]%0[aA](X-Forwarded|X-Custom|X-Injected|Set-Cookie)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100351'
+- '100727'

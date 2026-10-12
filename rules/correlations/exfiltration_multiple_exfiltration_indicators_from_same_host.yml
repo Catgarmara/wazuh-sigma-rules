@@ -1,0 +1,31 @@
+title: 'Exfiltration: Multiple exfiltration indicators from same host'
+id: 1b436c70-3126-50e7-843a-addd78be22c2
+name: wazuh_101510
+status: experimental
+description: 'Exfiltration: Multiple exfiltration indicators from same host — data breach in progress.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  type: event_count
+  rules:
+  - wazuh_101500
+  - wazuh_101501
+  - wazuh_101502
+  - wazuh_101503
+  - wazuh_101504
+  - wazuh_101505
+  - wazuh_101506
+  - wazuh_101507
+  - wazuh_101508
+  - wazuh_101509
+  group-by:
+  - User
+  timespan: 300s
+  condition:
+    gte: 3
+level: high
+wazuh_rule_id:
+- '101510'
+tags:
+- attack.exfiltration
+- attack.t1048

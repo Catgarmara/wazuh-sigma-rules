@@ -1,0 +1,23 @@
+title: 'SQL Injection: Error-based injection via HAVING/GROUP BY with aggregate'
+id: c41f164a-4b61-51b6-a709-ddee58db7ad3
+name: wazuh_100107
+status: experimental
+description: 'SQL Injection: Error-based injection via HAVING/GROUP BY with aggregate.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\b(having|group\s+by)\b.*(\bcount\b|\bsum\b|\bavg\b))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100107'
+- '100786'

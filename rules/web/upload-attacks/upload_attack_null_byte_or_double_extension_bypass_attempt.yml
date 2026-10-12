@@ -1,0 +1,23 @@
+title: 'Upload Attack: Null byte or double extension bypass attempt'
+id: c42c765e-2ee0-5eee-9629-5bdf1fac8b41
+name: wazuh_100466
+status: experimental
+description: 'Upload Attack: Null byte or double extension bypass attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.(php|asp|jsp)\%00\.(jpg|png|gif)|\.(php|asp|jsp)\.jpg)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100466'
+- '100813'

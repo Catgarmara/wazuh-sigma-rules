@@ -1,0 +1,22 @@
+title: 'Deserialization: Repeated deserialization attack attempts'
+id: 834055c6-6802-563e-879a-c2e88d0e30e2
+name: wazuh_100365
+status: experimental
+description: 'Deserialization: Repeated deserialization attack attempts — active exploitation.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100360
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 5
+level: high
+wazuh_rule_id:
+- '100365'
+tags:
+- attack.initial-access
+- attack.t1190

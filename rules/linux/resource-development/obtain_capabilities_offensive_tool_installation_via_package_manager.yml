@@ -1,0 +1,22 @@
+title: 'Obtain Capabilities: Offensive tool installation via package manager'
+id: 866e09c9-4dd0-5f65-a9c8-1152294c6307
+name: wazuh_101655
+status: experimental
+description: 'T1588.002 - Obtain Capabilities: Offensive tool installation via package manager.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.resource-development
+- attack.t1588.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bapt\b\s+install\s+.*(nmap|hydra|john|aircrack|hashcat|sqlmap|nikto|gobuster))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101655'

@@ -1,0 +1,26 @@
+title: 'Brute Force Web: attack pattern returned HTTP 200'
+id: a438cd2b-af56-56f5-ab34-8d4c63826d8d
+name: wazuh_100715
+status: experimental
+description: 'Brute Force Web: attack pattern returned HTTP 200 — server processed the request. Wazuh parents 100712, 100714 are left out: their own status gate excludes 200, so they never reach this rule
+  in Wazuh either.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.t1110
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\/wp-login\.php|\/xmlrpc\.php|\/administrator\/)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100715'

@@ -1,0 +1,23 @@
+title: 'Upload Attack: ASP/ASPX file upload attempt'
+id: 4d0f0188-5332-5fbb-9426-eb8984f3411f
+name: wazuh_100461
+status: experimental
+description: 'Upload Attack: ASP/ASPX file upload attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(upload|file_upload).*\.(asp|aspx|ashx|asmx|cer|asa)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100461'
+- '100808'

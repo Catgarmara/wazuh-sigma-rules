@@ -1,0 +1,28 @@
+title: 'HTTP Smuggling: attack pattern returned HTTP 200'
+id: 71e73094-23f5-5a96-9095-6a3835e5c68b
+name: wazuh_100753
+status: experimental
+description: 'HTTP Smuggling: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(Content-Length\s*:\s*\d+\r?\nContent-Length\s*:\s*\d+)'
+    - '(Transfer-Encoding\s*:\s*(chunked\s*,\s*identity|identity\s*,\s*chunked|[\x0b\x0c]chunked))'
+    - '(Transfer-Encoding\s*:\s*chunked.*Content-Length|Content-Length.*Transfer-Encoding\s*:\s*chunked)'
+    - '(\r\n\r\n.*\b(GET|POST|PUT|DELETE|PATCH)\s+\/)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100753'

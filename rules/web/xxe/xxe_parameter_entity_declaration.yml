@@ -1,0 +1,23 @@
+title: 'XXE: Parameter entity (%) declaration'
+id: e88e6026-f224-51f4-9952-3f65d204dfad
+name: wazuh_100203
+status: experimental
+description: 'XXE: Parameter entity (%) declaration — blind XXE / out-of-band exfiltration vector.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(ENTITY\s+%\s+\w+\s+SYSTEM)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100203'
+- '100846'

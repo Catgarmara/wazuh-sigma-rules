@@ -1,0 +1,23 @@
+title: 'Web Shell: Obfuscation function detected'
+id: d1427aa0-e97f-50b6-ac0e-e9fe15c7f83a
+name: wazuh_100295
+status: experimental
+description: 'Web Shell: Obfuscation function detected — encoded shell payload likely.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\bbase64_decode\s*\(|\bgzinflate\s*\(|\bstr_rot13\s*\(|\bgzuncompress\s*\()'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100295'
+- '100820'

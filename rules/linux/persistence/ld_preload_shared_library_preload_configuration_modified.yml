@@ -1,0 +1,23 @@
+title: 'LD_PRELOAD: Shared library preload configuration modified'
+id: dce637cf-c3aa-56c7-9e5a-1fb4dc6761cf
+name: wazuh_101108
+status: experimental
+description: 'T1574.006 - LD_PRELOAD: Shared library preload configuration modified.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.execution
+- attack.t1574.006
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/ld\.so\.(preload|conf)$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101108'

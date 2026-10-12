@@ -1,0 +1,33 @@
+title: 'XSS: attack pattern returned HTTP 200'
+id: 014766ea-99fd-5395-b728-967bdbce6921
+name: wazuh_100842
+status: experimental
+description: 'XSS: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(%3ciframe|%3cembed|%3cobject|%3capplet|%253ciframe|%253cembed|%253cobject|%253capplet)'
+    - '(%3cimg.*onerror|%3csvg.*onload|%3cbody.*onload|%253cimg.*onerror|%253csvg.*onload|%253cbody.*onload)'
+    - '(%3cscript|%253cscript)'
+    - '(%3cstyle.*(expression|behavior|url)\s*\(|%3clink.*(expression|behavior|url)\s*\(|%253cstyle.*(expression|behavior|url)\s*\(|%253clink.*(expression|behavior|url)\s*\()'
+    - '(^|[^a-z])on(abort|animation(start|end|iteration)|auxclick|before(input|print|unload|toggle)|blur|cancel|can(play|playthrough)|change|click|close|contextmenu|copy|cuechange|cut|dblclick|drag(end|enter|leave|over|start)?|drop|durationchange|ended|error|focus(in|out)?|formdata|hashchange|input|invalid|key(down|press|up)|load(eddata|edmetadata|start)?|message|mouse(down|enter|leave|move|out|over|up|wheel)|pagehide|pageshow|paste|pause|play(ing)?|pointer(cancel|down|enter|leave|move|out|over|up|rawupdate)|popstate|progress|readystatechange|reset|resize|scroll(end)?|search|seek(ed|ing)|select(start|ionchange)?|show|submit|toggle|touch(cancel|end|move|start)|transition(cancel|end|run|start)|unload|volumechange|waiting|wheel|begin|repeat)(\s|%20|%09|%0a|%0d|\+|/|%2f)*(=|%3d)'
+    - '(alert\s*\(|confirm\s*\(|prompt\s*\(|eval\s*\()'
+    - '(data\s*:\s*text/html|data%3a\s*text/html|data\s*:\s*application/xhtml|data%3a\s*application/xhtml)'
+    - '(document\.(cookie|domain|write|location)|window\.(location|open))'
+    - '(javascript\s*:|javascript%3a|vbscript\s*:|vbscript%3a|livescript\s*:|livescript%3a)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100842'

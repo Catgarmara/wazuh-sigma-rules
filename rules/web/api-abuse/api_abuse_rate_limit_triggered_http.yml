@@ -1,0 +1,24 @@
+title: 'API Abuse: Rate limit triggered (HTTP 429)'
+id: b6a3e87f-2124-58bb-bf68-519cd920b43f
+name: wazuh_100310
+status: experimental
+description: 'API Abuse: Rate limit triggered (HTTP 429).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1499
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/)'
+    sc-status: 429
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100310'
+- '100707'

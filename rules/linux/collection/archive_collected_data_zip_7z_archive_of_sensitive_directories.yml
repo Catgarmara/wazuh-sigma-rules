@@ -1,0 +1,22 @@
+title: 'Archive Collected Data: Zip/7z archive of sensitive directories'
+id: bfe919a8-9846-51de-9ce2-6b5894eb14b4
+name: wazuh_101401
+status: experimental
+description: 'T1560.001 - Archive Collected Data: Zip/7z archive of sensitive directories.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1560.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bzip\b\s+-r\s+.*\/(home|etc|var)|\b7z\b\s+a\s+.*\/(home|etc|var))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101401'

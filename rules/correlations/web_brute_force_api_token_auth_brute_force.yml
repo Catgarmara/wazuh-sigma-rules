@@ -1,0 +1,22 @@
+title: 'Web Brute Force: API token/auth brute force'
+id: ac9aa58d-a565-50da-bdc6-4f0b64eeef1e
+name: wazuh_100277
+status: experimental
+description: 'Web Brute Force: API token/auth brute force — automated credential guessing.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100714
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 20
+level: high
+wazuh_rule_id:
+- '100277'
+tags:
+- attack.credential-access
+- attack.t1110

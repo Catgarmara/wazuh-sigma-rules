@@ -1,0 +1,23 @@
+title: 'SSTI: Common SSTI probe detected ({{7*7}}, {{config}}, {{self}})'
+id: 7b3f5b9a-c791-58ce-a12f-268805e1499f
+name: wazuh_100381
+status: experimental
+description: 'SSTI: Common SSTI probe detected ({{7*7}}, {{config}}, {{self}}).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\{\{\s*7\s*\*\s*7\s*\}\}|\{\{\s*config\b|\{\{\s*self\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100381'
+- '100801'

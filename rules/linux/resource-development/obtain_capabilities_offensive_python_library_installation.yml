@@ -1,0 +1,22 @@
+title: 'Obtain Capabilities: Offensive Python library installation'
+id: 75f98f77-f6df-5fe4-af55-190b77251cfd
+name: wazuh_101654
+status: experimental
+description: 'T1588.002 - Obtain Capabilities: Offensive Python library installation.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.resource-development
+- attack.t1588.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bpip\b\s+install\s+.*(pwntools|impacket|scapy|paramiko|pycrypto))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101654'

@@ -1,0 +1,23 @@
+title: 'Web Shell: Server-side script accessed from upload/images directory'
+id: 3af6d985-04c8-5620-94a3-1ebe50b95eac
+name: wazuh_100296
+status: experimental
+description: 'Web Shell: Server-side script accessed from upload/images directory.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/uploads?\/[^/]*\.(php|asp|aspx|jsp|cgi)|\/images?\/[^/]*\.(php|asp|aspx))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100296'
+- '100821'

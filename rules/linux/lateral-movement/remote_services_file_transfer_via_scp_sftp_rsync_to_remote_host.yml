@@ -1,0 +1,22 @@
+title: 'Remote Services: File transfer via SCP/SFTP/rsync to remote host'
+id: d5200540-1826-5d65-b05e-3a807c67a45b
+name: wazuh_101352
+status: experimental
+description: 'T1021.004 - Remote Services: File transfer via SCP/SFTP/rsync to remote host.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bscp\b\s+.*@.*:|\bsftp\b\s+.*@|\brsync\b\s+.*@.*:)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101352'

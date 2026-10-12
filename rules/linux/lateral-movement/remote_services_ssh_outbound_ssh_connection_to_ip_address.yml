@@ -1,0 +1,22 @@
+title: 'Remote Services: SSH: Outbound SSH connection to IP address'
+id: b10ebac8-77b8-5bce-899d-b122b4391a36
+name: wazuh_101350
+status: experimental
+description: 'T1021.004 - Remote Services: SSH: Outbound SSH connection to IP address.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.004
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bssh\b\s+(-i\s+|.*@)\d+\.\d+\.\d+\.\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101350'

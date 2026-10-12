@@ -1,0 +1,22 @@
+title: 'Proxy: SOCKS/stunnel proxy tool execution detected'
+id: fb1148dd-65d8-5efc-994e-46cbbf277fbb
+name: wazuh_101458
+status: experimental
+description: 'T1090 - Proxy: SOCKS/stunnel proxy tool execution detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1090
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bstunnel\b|\bredsocks\b|\b3proxy\b|\bmicrosocks\b|\bsocks5\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101458'

@@ -1,0 +1,23 @@
+title: 'Process Injection: ptrace/strace attaching to running process'
+id: 7477e863-6850-5693-87f4-06adab1799db
+name: wazuh_101160
+status: experimental
+description: 'T1055 - Process Injection: ptrace/strace attaching to running process.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.privilege-escalation
+- attack.t1055
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bptrace\b\s+PTRACE_ATTACH|\bptrace\b\s+PTRACE_SEIZE|strace\s+-p\s+\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101160'

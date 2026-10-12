@@ -1,0 +1,27 @@
+title: 'CSRF: attack pattern returned HTTP 200'
+id: c0206275-2458-5f80-97a9-9b00c5306424
+name: wazuh_100732
+status: experimental
+description: 'CSRF: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\/api\/(transfer|payment|delete|admin|settings|password))'
+    - '(\/password\/change|\/account\/delete|\/admin\/users\/)'
+    - '(csrf[_-]?token=|_token=|authenticity_token=)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100732'

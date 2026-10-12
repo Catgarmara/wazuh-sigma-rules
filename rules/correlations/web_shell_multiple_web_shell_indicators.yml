@@ -1,0 +1,22 @@
+title: 'Web Shell: Multiple web shell indicators'
+id: 696fd185-5c04-5eae-91db-f8f69ce8a7dc
+name: wazuh_100298
+status: experimental
+description: 'Web Shell: Multiple web shell indicators — active compromise likely.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100290
+  timespan: 120s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 3
+level: critical
+wazuh_rule_id:
+- '100298'
+tags:
+- attack.persistence
+- attack.t1505.003

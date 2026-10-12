@@ -1,0 +1,23 @@
+title: 'Command Injection: AND-chained command detected'
+id: 4cd7a25a-882f-568d-b3dd-9dddd08d2c0b
+name: wazuh_100167
+status: experimental
+description: 'Command Injection: AND-chained command detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(&&\s*(cat|ls|id|whoami|wget|curl|rm|chmod|chown)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100167'
+- '100723'

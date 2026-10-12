@@ -1,0 +1,22 @@
+title: 'Software Packing: Binary packing/compilation tool detected'
+id: 0476aef1-ed48-50ad-9db9-d74497d7be32
+name: wazuh_101657
+status: experimental
+description: 'T1027.002 - Software Packing: Binary packing/compilation tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1027.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bupx\b\s+(-[0-9]|--best|--ultra-brute)\s+|\bpyinstaller\b\s+--onefile|\bnuitka\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101657'

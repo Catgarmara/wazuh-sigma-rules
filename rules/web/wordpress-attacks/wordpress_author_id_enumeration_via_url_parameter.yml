@@ -1,0 +1,23 @@
+title: 'WordPress: Author ID enumeration via URL parameter'
+id: dfaebe8e-6996-5fa6-af15-bcd39e323cb0
+name: wazuh_100485
+status: experimental
+description: 'WordPress: Author ID enumeration via URL parameter.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1087
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/\?author=\d+|\/wp-json\/.*\/users\/\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100485'
+- '100828'

@@ -1,0 +1,23 @@
+title: 'Command Injection: Pipe to recon command detected in URL'
+id: 2e90cc99-f8fd-5cdb-8955-8838dfdf2b32
+name: wazuh_100160
+status: experimental
+description: 'Command Injection: Pipe to recon command detected in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\|\s*(cat|ls|id|whoami|uname|pwd|ifconfig|ip\s+a))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100160'
+- '100716'

@@ -1,0 +1,23 @@
+title: 'SQL Injection: String function abuse detected (CHAR/CONCAT/GROUP_CONCAT)'
+id: 30e0a1ac-2780-57ff-a4e3-59186db20d48
+name: wazuh_100111
+status: experimental
+description: 'SQL Injection: String function abuse detected (CHAR/CONCAT/GROUP_CONCAT).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\bchar\s*\(|\bconcat\s*\(|\bconcat_ws\s*\(|\bgroup_concat\s*\()'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100111'
+- '100789'

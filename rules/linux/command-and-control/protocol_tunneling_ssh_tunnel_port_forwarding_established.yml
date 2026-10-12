@@ -1,0 +1,22 @@
+title: 'Protocol Tunneling: SSH tunnel/port forwarding established'
+id: d36dcbf7-9425-5c41-b2cd-a2bc6d490a01
+name: wazuh_101454
+status: experimental
+description: 'T1572 - Protocol Tunneling: SSH tunnel/port forwarding established.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1572
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bssh\b\s+.*-[RLD]\s+\d+:\d+\.\d+\.\d+\.\d+:\d+|\bssh\b\s+-N\s+-f)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101454'

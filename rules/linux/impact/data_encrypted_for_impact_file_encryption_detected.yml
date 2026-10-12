@@ -1,0 +1,22 @@
+title: 'Data Encrypted for Impact: File encryption detected'
+id: 1e9d7530-eebd-5880-9bf4-d41ce89ba6cf
+name: wazuh_101553
+status: experimental
+description: 'T1486 - Data Encrypted for Impact: File encryption detected — potential ransomware.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1486
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bopenssl\b\s+enc\s+-aes.*-in\s+.*-out\s+.*\.enc|\bgpg\b\s+(-c|--symmetric)\s+.*\.(tar|zip|sql|db))'
+  condition: selection
+falsepositives:
+- Unknown
+level: critical
+wazuh_rule_id:
+- '101553'

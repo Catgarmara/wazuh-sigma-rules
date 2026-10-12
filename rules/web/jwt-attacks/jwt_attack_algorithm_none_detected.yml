@@ -1,0 +1,23 @@
+title: 'JWT Attack: Algorithm "none" detected'
+id: 117ca3cb-e614-59df-ad34-9a70058f7c0a
+name: wazuh_100420
+status: experimental
+description: 'JWT Attack: Algorithm "none" detected — signature bypass attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1550
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(eyJhbGciOiJub25lIi|"alg"\s*:\s*"none"|"alg"\s*:\s*"None")'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100420'
+- '100758'

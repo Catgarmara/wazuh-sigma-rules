@@ -1,0 +1,22 @@
+title: 'DNS Tunneling: DNS tunneling or C2 framework tool detected'
+id: 1196121a-cad0-5d3a-9731-cc3210036581
+name: wazuh_101452
+status: experimental
+description: 'T1071.004 - DNS Tunneling: DNS tunneling or C2 framework tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1071.004
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\biodine\b|\bdnscat\b|\bdns2tcp\b|\bsliver\b|\bcobalt\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101452'

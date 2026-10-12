@@ -1,0 +1,23 @@
+title: 'SSH Authorized Keys: Modification of SSH authorized_keys file'
+id: dab8a7ff-1fac-5289-a0d4-a94c28a1ee77
+name: wazuh_101102
+status: experimental
+description: 'T1098.004 - SSH Authorized Keys: Modification of SSH authorized_keys file.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1098.004
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/root\/\.ssh\/authorized_keys|\/home\/\w+\/\.ssh\/authorized_keys)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101102'

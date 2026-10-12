@@ -1,0 +1,23 @@
+title: 'LFI: Log file inclusion attempt'
+id: 42a4686f-430e-546c-9fcc-23626fc4d13b
+name: wazuh_100148
+status: experimental
+description: 'LFI: Log file inclusion attempt — potential log poisoning vector.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/var\/log\/(apache2?|nginx|syslog|auth\.log|messages))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100148'
+- '100777'

@@ -1,0 +1,23 @@
+title: 'Upload Attack: JSP/WAR file upload attempt'
+id: 2b25ccbd-7fa6-5a11-80b8-f453e73703e7
+name: wazuh_100462
+status: experimental
+description: 'Upload Attack: JSP/WAR file upload attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(upload|file_upload).*\.(jsp|jspx|jsw|war|ear)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100462'
+- '100809'

@@ -1,0 +1,23 @@
+title: 'SSRF: Exotic protocol scheme (gopher/dict/ldap/tftp)'
+id: f975c737-cad8-5b0d-a465-d3d366235b92
+name: wazuh_100224
+status: experimental
+description: 'SSRF: Exotic protocol scheme (gopher/dict/ldap/tftp) — protocol smuggling attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(=(gopher|dict|ldap|tftp):\/\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100224'
+- '100795'

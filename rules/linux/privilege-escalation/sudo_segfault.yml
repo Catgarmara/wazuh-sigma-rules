@@ -1,0 +1,21 @@
+title: 'Exploitation for Privilege Escalation: Sudo crash'
+id: e1fbb33d-e37c-59d2-aa54-202a21b89da1
+name: wazuh_101155
+status: experimental
+description: Kernel log reports a segfault in sudo. A sudo crash is a common side effect of heap-overflow exploits against it.
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1068
+logsource:
+  product: linux
+detection:
+  selection:
+    'Message|re|i': '(sudo\[\d+\]:\s+segfault|segfault.*\/usr\/bin\/sudo)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101155'

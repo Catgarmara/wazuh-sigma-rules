@@ -1,0 +1,23 @@
+title: 'CRLF Injection: URL-encoded line terminator detected in request'
+id: d728fcf8-06cf-5b2e-bef3-8269ce59f1d1
+name: wazuh_100350
+status: experimental
+description: 'CRLF Injection: URL-encoded line terminator detected in request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re': '%0[dD]%0[aA]|%0[dD]|%0[aA]'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100350'
+- '100726'

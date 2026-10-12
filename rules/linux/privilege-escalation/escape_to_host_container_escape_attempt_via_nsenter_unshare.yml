@@ -1,0 +1,22 @@
+title: 'Escape to Host: Container escape attempt via nsenter/unshare'
+id: ff63c59a-1fa7-5e55-9aa8-9992674c2ade
+name: wazuh_101158
+status: experimental
+description: 'T1611 - Escape to Host: Container escape attempt via nsenter/unshare.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1611
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bnsenter\b\s+--target\s+1|unshare\b\s+--mount.*chroot)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101158'

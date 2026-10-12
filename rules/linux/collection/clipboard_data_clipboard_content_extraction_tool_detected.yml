@@ -1,0 +1,22 @@
+title: 'Clipboard Data: Clipboard content extraction tool detected'
+id: 63bfa61c-402e-5857-a3ef-21999e149ef1
+name: wazuh_101408
+status: experimental
+description: 'T1115 - Clipboard Data: Clipboard content extraction tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1115
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bxclip\b|\bxdotool\b|\bxsel\b\s+-[bo]|\bwl-paste\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101408'

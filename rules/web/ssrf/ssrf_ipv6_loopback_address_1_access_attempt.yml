@@ -1,0 +1,23 @@
+title: 'SSRF: IPv6 loopback address (::1) access attempt'
+id: 51e22377-c43b-5c62-87ee-93c45997d0cf
+name: wazuh_100223
+status: experimental
+description: 'SSRF: IPv6 loopback address (::1) access attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(=https?:\/\/\[::1\]|=https?:\/\/\[0:0:0:0:0:0:0:1\])'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100223'
+- '100794'

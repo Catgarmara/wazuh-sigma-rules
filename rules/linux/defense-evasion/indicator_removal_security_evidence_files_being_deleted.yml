@@ -1,0 +1,22 @@
+title: 'Indicator Removal: Security evidence files being deleted'
+id: a976f02f-ae67-5ee8-a4c6-225b40407af0
+name: wazuh_101209
+status: experimental
+description: 'T1070 - Indicator Removal: Security evidence files being deleted.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1070
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\brm\b\s+(-rf?\s+)?.*\.(log|audit|pcap|evt|evtx))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101209'

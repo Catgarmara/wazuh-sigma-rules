@@ -1,0 +1,22 @@
+title: 'System Information Discovery: OS/kernel version enumeration'
+id: ebf9f7db-5c20-5c9c-940b-26056bdb9196
+name: wazuh_101300
+status: experimental
+description: 'T1082 - System Information Discovery: OS/kernel version enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1082
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\buname\b\s+-a|\bcat\b\s+\/etc\/(os-release|lsb-release|redhat-release)|\bhostnamectl\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '101300'

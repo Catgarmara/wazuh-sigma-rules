@@ -1,0 +1,27 @@
+title: Static SVG/HTML GET is not an upload
+id: fae9bebc-2618-542e-a607-cc9c44db92cd
+description: 'A GET/HEAD for a static .svg/.html/.xhtml path with no query string cannot upload anything. Paths containing "upload" in a file name otherwise trip the SVG/HTML upload rules. POST/PUT and
+  anything with a query string still alert.'
+date: '2026-10-12'
+logsource:
+  category: webserver
+  product: nginx
+filter:
+  rules:
+  - wazuh_100464
+  - wazuh_100815
+  selection_static_svg:
+    cs-method:
+    - GET
+    - HEAD
+    'cs-uri-query|re|i': '^[^?]*\.svg$'
+  selection_static_page:
+    cs-method:
+    - GET
+    - HEAD
+    'cs-uri-query|re|i': '^/[^?.]+\.(svg|html?|xhtml)$'
+  condition: 'not 1 of selection_static_*'
+wazuh_rule_id:
+- '100923'
+- '100955'
+- '100956'

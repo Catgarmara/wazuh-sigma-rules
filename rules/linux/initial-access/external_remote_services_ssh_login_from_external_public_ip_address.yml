@@ -1,0 +1,23 @@
+title: 'External Remote Services: SSH login from external/public IP address'
+id: 4ae3c760-f3ca-5776-b2b9-9eb4725602ee
+name: wazuh_101011
+status: experimental
+description: 'T1133 - External Remote Services: SSH login from external/public IP address.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.initial-access
+- attack.t1133
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    'Message|re|i': '(Accepted\s+password.*from\s+(?!(10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.))\d+\.\d+\.\d+\.\d+.*port\s+\d+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101011'

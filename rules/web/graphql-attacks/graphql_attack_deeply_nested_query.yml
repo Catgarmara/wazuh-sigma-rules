@@ -1,0 +1,23 @@
+title: 'GraphQL Attack: Deeply nested query'
+id: 01d6b3cb-7df8-52b7-92d3-26702006d5d3
+name: wazuh_100441
+status: experimental
+description: 'GraphQL Attack: Deeply nested query — resource exhaustion (DoS) attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1499
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(query\s*\{(\s*\w+\s*\{){5,})'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100441'
+- '100740'

@@ -1,0 +1,22 @@
+title: 'Setuid/Setgid: SUID/SGID bit set on file'
+id: 93c80a14-ee8b-5214-a07f-b7b70f1c02e1
+name: wazuh_101152
+status: experimental
+description: 'T1548.001 - Setuid/Setgid: SUID/SGID bit set on file — privilege escalation vector.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1548.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bchmod\b\s+[u+]*s\b|\bchmod\b\s+[24][0-7]{3}\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101152'

@@ -1,0 +1,22 @@
+title: 'Disable or Modify Firewall: Firewall rules flushed or deleted'
+id: 8af4ffbb-4eaf-5b60-9a59-a36b1250200a
+name: wazuh_101203
+status: experimental
+description: 'T1562.004 - Disable or Modify Firewall: Firewall rules flushed or deleted.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.t1686
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\biptables\b\s+(-F|-X|--flush|--delete-chain)|\bnft\b\s+flush\s+ruleset)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101203'

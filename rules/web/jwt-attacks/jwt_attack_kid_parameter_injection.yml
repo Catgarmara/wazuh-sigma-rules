@@ -1,0 +1,23 @@
+title: 'JWT Attack: KID parameter injection'
+id: 79462cb0-b39d-563d-8f19-98e93a0e4d51
+name: wazuh_100422
+status: experimental
+description: 'JWT Attack: KID parameter injection — directory traversal or SQLi in key ID.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1550
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '("kid"\s*:\s*"[^"]*(\.\./|;|\\x|%00|'' OR|UNION))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100422'
+- '100760'

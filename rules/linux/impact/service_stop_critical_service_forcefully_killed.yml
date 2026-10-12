@@ -1,0 +1,22 @@
+title: 'Service Stop: Critical service forcefully killed'
+id: 78d6f01f-4ef1-518d-9373-a148d24cf774
+name: wazuh_101556
+status: experimental
+description: 'T1489 - Service Stop: Critical service forcefully killed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1489
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bkillall\b\s+(mysqld|postgres|mongod|redis-server|httpd|nginx|apache2))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101556'

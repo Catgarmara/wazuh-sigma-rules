@@ -1,0 +1,22 @@
+title: 'SSRF: Repeated SSRF attempts detected'
+id: 629fea77-61f0-53cc-a8ec-7f84d317426c
+name: wazuh_100228
+status: experimental
+description: 'SSRF: Repeated SSRF attempts detected — automated attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100220
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 5
+level: high
+wazuh_rule_id:
+- '100228'
+tags:
+- attack.initial-access
+- attack.t1190

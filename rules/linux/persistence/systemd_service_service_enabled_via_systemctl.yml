@@ -1,0 +1,23 @@
+title: 'Systemd Service: Service enabled via systemctl'
+id: 25c60360-0df4-587d-a440-2065f31d5262
+name: wazuh_101111
+status: experimental
+description: 'T1543.002 - Systemd Service: Service enabled via systemctl — persistence mechanism.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1543.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsystemctl\b\s+(enable|daemon-reload).*\.(service|timer))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101111'

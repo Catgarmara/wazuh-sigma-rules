@@ -1,0 +1,23 @@
+title: 'XSS: JavaScript or VBScript URI scheme injection attempt'
+id: f516c624-8aa3-5949-ac46-a0da2a9c4d29
+name: wazuh_100122
+status: experimental
+description: 'XSS: JavaScript or VBScript URI scheme injection attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(javascript\s*:|javascript%3a|vbscript\s*:|vbscript%3a|livescript\s*:|livescript%3a)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100122'
+- '100835'

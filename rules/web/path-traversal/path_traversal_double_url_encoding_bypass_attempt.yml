@@ -1,0 +1,23 @@
+title: 'Path Traversal: double URL encoding bypass attempt'
+id: 8bcefd92-e9da-50d5-8e99-6eecdb3a017b
+name: wazuh_100182
+status: experimental
+description: 'Path Traversal: double URL encoding bypass attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1083
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.\.%252f|\.\.%255c|%252e%252e)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100182'
+- '100702'

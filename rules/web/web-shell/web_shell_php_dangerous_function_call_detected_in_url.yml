@@ -1,0 +1,23 @@
+title: 'Web Shell: PHP dangerous function call detected in URL'
+id: cda622ef-14db-52dc-b563-2b1c89764bc4
+name: wazuh_100293
+status: experimental
+description: 'Web Shell: PHP dangerous function call detected in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\bpassthru\s*\(|\bshell_exec\s*\(|\bpopen\s*\(|\bproc_open\s*\()'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100293'
+- '100819'

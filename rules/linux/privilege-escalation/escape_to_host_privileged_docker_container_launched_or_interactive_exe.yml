@@ -1,0 +1,22 @@
+title: 'Escape to Host: Privileged Docker container launched or interactive exec'
+id: 3eefa247-fefb-5946-8e5c-e7872c56691c
+name: wazuh_101159
+status: experimental
+description: 'T1611 - Escape to Host: Privileged Docker container launched or interactive exec.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1611
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(docker\b\s+run\s+.*--privileged|docker\b\s+exec\s+.*-it\s+.*bash)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101159'

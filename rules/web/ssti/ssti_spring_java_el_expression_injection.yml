@@ -1,0 +1,23 @@
+title: 'SSTI: Spring/Java EL expression injection'
+id: 500fb9f5-3f98-5f3f-9156-d69b8f163847
+name: wazuh_100383
+status: experimental
+description: 'SSTI: Spring/Java EL expression injection — code execution attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\$\{T\(java\.lang|new\s+java\.lang\.Runtime|\.getRuntime\(\)\.exec)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100383'
+- '100803'

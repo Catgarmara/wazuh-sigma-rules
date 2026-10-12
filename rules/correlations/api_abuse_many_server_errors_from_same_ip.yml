@@ -1,0 +1,22 @@
+title: 'API Abuse: Many server errors from same IP'
+id: fe0b2103-2559-55f1-ae3b-ee3cf47e92a6
+name: wazuh_100316
+status: experimental
+description: 'API Abuse: Many server errors from same IP — API fuzzing attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100710
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 15
+level: high
+wazuh_rule_id:
+- '100316'
+tags:
+- attack.initial-access
+- attack.t1190

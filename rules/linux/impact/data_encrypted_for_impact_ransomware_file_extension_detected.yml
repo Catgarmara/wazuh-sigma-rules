@@ -1,0 +1,22 @@
+title: 'Data Encrypted for Impact: Ransomware file extension detected'
+id: 4bbc50eb-e33e-5621-aab3-21040d6b0897
+name: wazuh_101554
+status: experimental
+description: 'T1486 - Data Encrypted for Impact: Ransomware file extension detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1486
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '\.(encrypted|locked|crypt|enc|cry|ransom|WNCRY|cerber|locky|zepto)$'
+  condition: selection
+falsepositives:
+- Unknown
+level: critical
+wazuh_rule_id:
+- '101554'

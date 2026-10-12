@@ -1,0 +1,23 @@
+title: 'JWT Attack: JKU/X5U header injection'
+id: 4e6042e3-7e93-5242-accf-7f5e2c8cd5ae
+name: wazuh_100423
+status: experimental
+description: 'JWT Attack: JKU/X5U header injection — external key URL specified.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1550
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '("jku"\s*:\s*"https?://|"x5u"\s*:\s*"https?://)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100423'
+- '100761'

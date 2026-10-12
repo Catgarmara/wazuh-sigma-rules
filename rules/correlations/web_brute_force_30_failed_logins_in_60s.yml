@@ -1,0 +1,22 @@
+title: 'Web Brute Force: 30+ failed logins in 60s'
+id: 519fe79d-fd33-58d5-9e27-b41aeded15cc
+name: wazuh_100272
+status: experimental
+description: 'Web Brute Force: 30+ failed logins in 60s — aggressive brute force / credential stuffing.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100270
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 30
+level: high
+wazuh_rule_id:
+- '100272'
+tags:
+- attack.credential-access
+- attack.t1110.004

@@ -1,0 +1,27 @@
+title: 'Open Redirect: attack pattern returned HTTP 200'
+id: 683a1779-0516-5404-b107-ca14ac0df242
+name: wazuh_100768
+status: experimental
+description: 'Open Redirect: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\b(redirect|return|next|url|continue|dest|destination|redir|return_to|returnUrl|goto)\s*=\s*https?:\/\/)'
+    - '(\b(redirect|url)\s*=\s*(%2f%2f|%252f%252f|\/\\))'
+    - '(\b(redirect|url|next|goto)\s*=\s*\/\/[^/])'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100768'

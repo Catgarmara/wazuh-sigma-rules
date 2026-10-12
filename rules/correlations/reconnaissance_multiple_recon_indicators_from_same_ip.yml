@@ -1,0 +1,28 @@
+title: 'Reconnaissance: Multiple recon indicators from same IP'
+id: a14aa303-390b-5a36-8d41-19e1a17fa50b
+name: wazuh_101609
+status: experimental
+description: 'Reconnaissance: Multiple recon indicators from same IP — active target profiling.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  type: event_count
+  rules:
+  - wazuh_101601
+  - wazuh_101602
+  - wazuh_101604
+  - wazuh_101605
+  - wazuh_101606
+  - wazuh_101607
+  - wazuh_101608
+  group-by:
+  - c-ip
+  timespan: 120s
+  condition:
+    gte: 5
+level: high
+wazuh_rule_id:
+- '101609'
+tags:
+- attack.reconnaissance
+- attack.t1595

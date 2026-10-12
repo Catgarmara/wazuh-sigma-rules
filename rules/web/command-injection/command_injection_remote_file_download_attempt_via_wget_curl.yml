@@ -1,0 +1,23 @@
+title: 'Command Injection: Remote file download attempt via wget/curl'
+id: a0a42316-991b-5a48-9811-55ca38d7a8b0
+name: wazuh_100163
+status: experimental
+description: 'Command Injection: Remote file download attempt via wget/curl.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(?:^|[^a-z0-9_]|%[0-9a-f]{2})(?:wget|curl|fetch)(?:\s|%20|\+|%09)+https?(?::|%3a)(?:\/|%2f){2}'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100163'
+- '100719'

@@ -1,0 +1,29 @@
+title: 'Resource Development: Multiple offensive tool preparations'
+id: f4107662-3a9d-5bc9-8501-d5c7c5328c80
+name: wazuh_101658
+status: experimental
+description: 'Resource Development: Multiple offensive tool preparations — attack staging in progress.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  type: event_count
+  rules:
+  - wazuh_101650
+  - wazuh_101651
+  - wazuh_101652
+  - wazuh_101653
+  - wazuh_101654
+  - wazuh_101655
+  - wazuh_101656
+  - wazuh_101657
+  group-by:
+  - User
+  timespan: 600s
+  condition:
+    gte: 3
+level: high
+wazuh_rule_id:
+- '101658'
+tags:
+- attack.resource-development
+- attack.t1587

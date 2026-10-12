@@ -1,0 +1,22 @@
+title: 'IDOR: Rapid sequential user ID enumeration'
+id: 56e750ff-0726-571f-ba05-fc5a9e13813a
+name: wazuh_100401
+status: experimental
+description: 'IDOR: Rapid sequential user ID enumeration — automated IDOR exploitation.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100754
+  timespan: 30s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 20
+level: high
+wazuh_rule_id:
+- '100401'
+tags:
+- attack.initial-access
+- attack.t1190

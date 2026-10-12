@@ -1,0 +1,22 @@
+title: 'Disable or Modify Tools: IDS/IPS or HIDS agent stopped'
+id: 5e3e8abd-753a-53ec-abeb-66762b5b3e41
+name: wazuh_101202
+status: experimental
+description: 'T1562.001 - Disable or Modify Tools: IDS/IPS or HIDS agent stopped.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.t1685
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bservice\b\s+(auditd|wazuh-agent|ossec|fail2ban|snort|suricata)\s+stop)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101202'

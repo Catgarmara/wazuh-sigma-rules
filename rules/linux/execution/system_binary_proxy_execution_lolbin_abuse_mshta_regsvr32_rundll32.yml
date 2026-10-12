@@ -1,0 +1,22 @@
+title: 'System Binary Proxy Execution: LOLBin abuse (mshta/regsvr32/rundll32)'
+id: 82b18e55-45a1-57e1-a0dc-9024e383f357
+name: wazuh_101057
+status: experimental
+description: 'T1218 - System Binary Proxy Execution: LOLBin abuse (mshta/regsvr32/rundll32).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1218
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bmshta\b|\bregsvr32\b.*\/s.*\/i:https?|rundll32\b.*javascript:)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101057'

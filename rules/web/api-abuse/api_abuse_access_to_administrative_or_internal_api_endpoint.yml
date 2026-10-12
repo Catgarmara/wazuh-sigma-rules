@@ -1,0 +1,23 @@
+title: 'API Abuse: Access to administrative or internal API endpoint'
+id: 5ecc3326-3933-51e0-8481-eac3789b7959
+name: wazuh_100708
+status: experimental
+description: 'API Abuse: Access to administrative or internal API endpoint. (Merges Wazuh rule 100312, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/.*\b(admin|internal|debug|swagger|openapi|graphql)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100312'
+- '100708'

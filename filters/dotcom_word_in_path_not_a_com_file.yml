@@ -1,0 +1,18 @@
+title: .com domain or word in path is not a .com executable upload
+id: c1fe04e8-7b55-5e0f-809b-9f10ed9042b3
+description: 'The executable-upload pattern matches ".com" unanchored, so a path that names a domain (example.com/...) after "upload" trips it. Excluded only when no other upload-family pattern matches
+  and every ".com" continues as a word or path.'
+date: '2026-10-12'
+logsource:
+  category: webserver
+  product: nginx
+filter:
+  rules:
+  - wazuh_100463
+  - wazuh_100815
+  selection:
+    'cs-uri-query|re|i': '^(?!.*(upload|file_upload|import).*\.(php[3-8]?|phtml|phar|php\.jpg))(?!.*(upload|file_upload).*\.(asp|aspx|ashx|asmx|cer|asa|jsp|jspx|jsw|war|ear|htaccess|web\.config|\.user\.ini))(?!.*(upload|file_upload).*\.(svg|html|htm|xhtml)\b)(?!.*Content-Type:.*image\/(jpeg|png|gif).*\.(php|asp|jsp|exe))(?!.*(\.(php|asp|jsp)\%00\.(jpg|png|gif)|\.(php|asp|jsp)\.jpg))(?!.*(upload|file_upload).*\.(exe|dll|bat|cmd|ps1|vbs|wsf|scr|msi|com(?![a-z0-9\/._-])))'
+  condition: not selection
+wazuh_rule_id:
+- '100973'
+- '100974'

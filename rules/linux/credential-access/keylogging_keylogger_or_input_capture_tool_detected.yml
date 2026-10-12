@@ -1,0 +1,23 @@
+title: 'Keylogging: Keylogger or input capture tool detected'
+id: 955f51d2-fbe2-58f2-85e9-a8498a09d038
+name: wazuh_101256
+status: experimental
+description: 'T1056.001 - Keylogging: Keylogger or input capture tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.credential-access
+- attack.t1056.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bkeylogger\b|\bxinput\b\s+test|\bxdotool\b\s+key|\bxev\b|\blogkeys\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101256'

@@ -1,0 +1,27 @@
+title: 'API Abuse: attack pattern returned HTTP 200'
+id: b40e5002-deff-5aa3-93d5-6f0902415a5d
+name: wazuh_100711
+status: experimental
+description: 'API Abuse: attack pattern returned HTTP 200 — server processed the request. Wazuh parents 100707, 100710 are left out: their own status gate excludes 200, so they never reach this rule in
+  Wazuh either.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1499
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\/api\/.*\b(admin|internal|debug|swagger|openapi|graphql)\b)'
+    - '(\/api\/v\d+\/users\/\d+|\/api\/.*\bid=\d+)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100711'

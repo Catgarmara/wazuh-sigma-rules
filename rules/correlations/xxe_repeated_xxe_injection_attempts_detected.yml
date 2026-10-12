@@ -1,0 +1,22 @@
+title: 'XXE: Repeated XXE injection attempts detected'
+id: 844a6786-bbb5-51c6-9e78-abae2a196101
+name: wazuh_100207
+status: experimental
+description: 'XXE: Repeated XXE injection attempts detected — likely automated attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100843
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 5
+level: high
+wazuh_rule_id:
+- '100207'
+tags:
+- attack.initial-access
+- attack.t1190

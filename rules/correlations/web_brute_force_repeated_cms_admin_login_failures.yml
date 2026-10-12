@@ -1,0 +1,22 @@
+title: 'Web Brute Force: Repeated CMS admin login failures'
+id: 1e97920a-5e2d-559c-9e51-5dffca868e48
+name: wazuh_100275
+status: experimental
+description: 'Web Brute Force: Repeated CMS admin login failures — targeted attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100274
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 10
+level: high
+wazuh_rule_id:
+- '100275'
+tags:
+- attack.credential-access
+- attack.t1110

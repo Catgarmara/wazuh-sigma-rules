@@ -1,0 +1,23 @@
+title: 'RFI: Exotic PHP wrapper detected (expect/zip/phar/glob)'
+id: 846a063c-f765-514a-b9ca-151b4e8c0983
+name: wazuh_100142
+status: experimental
+description: 'RFI: Exotic PHP wrapper detected (expect/zip/phar/glob).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(expect:\/\/|zip:\/\/|phar:\/\/|glob:\/\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100142'
+- '100771'

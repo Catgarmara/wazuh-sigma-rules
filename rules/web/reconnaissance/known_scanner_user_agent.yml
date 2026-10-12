@@ -1,0 +1,22 @@
+title: 'Vulnerability Scanning: Known scanner User-Agent'
+id: f1bf2ad1-9420-593a-be87-6856b9b314f8
+name: wazuh_101606
+status: experimental
+description: 'Request from a known scanner tool User-Agent. The Wazuh rule matched the whole access-log line; this rule scopes the match to the User-Agent, as its title intends.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595.002
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-user-agent|re|i': '(\b(nikto|sqlmap|nmap|masscan|dirbuster|gobuster|ffuf|wfuzz)\b)'
+  condition: selection
+falsepositives:
+- Authorized vulnerability scanners
+level: medium
+wazuh_rule_id:
+- '101606'

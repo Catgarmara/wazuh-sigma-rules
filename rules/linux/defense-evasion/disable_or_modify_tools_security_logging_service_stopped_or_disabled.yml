@@ -1,0 +1,22 @@
+title: 'Disable or Modify Tools: Security/logging service stopped or disabled'
+id: f10a0d69-0fd7-585e-83cb-887102aa2d6a
+name: wazuh_101201
+status: experimental
+description: 'T1562.001 - Disable or Modify Tools: Security/logging service stopped or disabled.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.t1685
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsystemctl\b\s+(stop|disable)\s+(rsyslog|syslog|auditd|wazuh-agent|ossec))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101201'

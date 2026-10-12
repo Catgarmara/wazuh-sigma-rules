@@ -1,0 +1,23 @@
+title: 'Upload Attack: MIME type mismatch'
+id: 96990d9d-c42a-55c4-b5b9-21bb05d97ccf
+name: wazuh_100465
+status: experimental
+description: 'Upload Attack: MIME type mismatch — image Content-Type with executable extension.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(Content-Type:.*image\/(jpeg|png|gif).*\.(php|asp|jsp|exe))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100465'
+- '100812'

@@ -1,0 +1,23 @@
+title: 'GraphQL Attack: Recursive fragment'
+id: 315cab18-8b8a-5a8b-b221-ed77f5dbce76
+name: wazuh_100443
+status: experimental
+description: 'GraphQL Attack: Recursive fragment — circular reference DoS attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1499
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': 'fragment(?:\s|%20|\+|%09)+\w+(?:\s|%20|\+|%09)+on(?:\s|%20|\+|%09)+\w+(?:\s|%20|\+|%09)*(?:\{|%7b).*(?:\.{3}|(?:%2e){3})(?:\s|%20|\+|%09)*\w+.*(?:\{|%7b).*(?:\.{3}|(?:%2e){3})(?:\s|%20|\+|%09)*\w+'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100443'
+- '100742'

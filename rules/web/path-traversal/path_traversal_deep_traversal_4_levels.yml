@@ -1,0 +1,23 @@
+title: 'Path Traversal: deep traversal (4+ levels)'
+id: 386a94f9-66d0-5e96-816f-6cfcedcc8ac5
+name: wazuh_100184
+status: experimental
+description: 'Path Traversal: deep traversal (4+ levels) — root filesystem access attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1083
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.\./){4,}'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100184'
+- '100704'

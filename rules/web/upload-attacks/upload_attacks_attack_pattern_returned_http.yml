@@ -1,0 +1,32 @@
+title: 'Upload Attacks: attack pattern returned HTTP 200'
+id: 730a90e3-1902-5c82-919a-f440a294de95
+name: wazuh_100815
+status: experimental
+description: 'Upload Attacks: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(Content-Type:.*image\/(jpeg|png|gif).*\.(php|asp|jsp|exe))'
+    - '(\.(php|asp|jsp)\%00\.(jpg|png|gif)|\.(php|asp|jsp)\.jpg)'
+    - '(upload|file_upload).*\.(asp|aspx|ashx|asmx|cer|asa)'
+    - '(upload|file_upload).*\.(exe|dll|bat|cmd|ps1|vbs|wsf|scr|com|msi)'
+    - '(upload|file_upload).*\.(htaccess|web\.config|\.user\.ini)'
+    - '(upload|file_upload).*\.(jsp|jspx|jsw|war|ear)'
+    - '(upload|file_upload).*\.(svg|html|htm|xhtml)\b'
+    - '(upload|file_upload|import).*\.(php[3-8]?|phtml|phar|php\.jpg)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100815'

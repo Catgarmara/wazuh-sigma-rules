@@ -1,0 +1,30 @@
+title: 'GraphQL Attacks: attack pattern returned HTTP 200'
+id: afbcb085-d9d6-5b0f-9155-3b34d4c6d57f
+name: wazuh_100745
+status: experimental
+description: 'GraphQL Attacks: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\balias\d{2,}\s*:\s*\w+\(|(\balias\w+\s*:\s*\w+\(){5,})'
+    - '(\{__schema\b|\{__type\b|query\s*\{\s*__schema)'
+    - '(mutation\s*\{.*(deleteAll|dropAll|truncate|destroyAll)\b)'
+    - '(mutation\s*\{.*\bmutation\s*\{|query\s*\{.*\bquery\s*\{)'
+    - '(query\s*\{(\s*\w+\s*\{){5,})'
+    - 'fragment(?:\s|%20|\+|%09)+\w+(?:\s|%20|\+|%09)+on(?:\s|%20|\+|%09)+\w+(?:\s|%20|\+|%09)*(?:\{|%7b).*(?:\.{3}|(?:%2e){3})(?:\s|%20|\+|%09)*\w+.*(?:\{|%7b).*(?:\.{3}|(?:%2e){3})(?:\s|%20|\+|%09)*\w+'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100745'

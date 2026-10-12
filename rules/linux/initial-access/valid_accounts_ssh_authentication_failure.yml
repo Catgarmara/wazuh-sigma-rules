@@ -1,0 +1,25 @@
+title: 'Valid Accounts: SSH authentication failure'
+id: ca3c449e-41eb-563e-9c97-986071462f6a
+name: wazuh_101005
+status: experimental
+description: 'T1078 - Valid Accounts: SSH authentication failure — potential credential abuse.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.persistence
+- attack.privilege-escalation
+- attack.initial-access
+- attack.t1078
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    'Message|re|i': '(Failed password|authentication failure|invalid user)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101005'

@@ -1,0 +1,22 @@
+title: 'Setuid/Setgid: Enumeration of SUID/SGID binaries'
+id: 529885e5-fe5b-51de-9699-d24150316b34
+name: wazuh_101153
+status: experimental
+description: 'T1548.001 - Setuid/Setgid: Enumeration of SUID/SGID binaries — escalation recon.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1548.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bfind\b\s+.*-perm\s+(-4000|-2000|\/4000|\/u=s|\/g=s))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101153'

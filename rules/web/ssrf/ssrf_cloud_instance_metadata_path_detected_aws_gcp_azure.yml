@@ -1,0 +1,25 @@
+title: 'SSRF: Cloud instance metadata path detected (AWS/GCP/Azure)'
+id: 20fbc1b8-a7b6-5716-b0e8-b1ec2868b06e
+name: wazuh_100227
+status: experimental
+description: 'SSRF: Cloud instance metadata path detected (AWS/GCP/Azure).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.credential-access
+- attack.t1190
+- attack.t1552
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/latest\/meta-data|\/latest\/user-data|\/metadata\/instance)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100227'
+- '100798'

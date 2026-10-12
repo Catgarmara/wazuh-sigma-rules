@@ -1,0 +1,22 @@
+title: 'Data Destruction: Recursive deletion of critical system directories'
+id: 92918eb6-4042-57a1-8f23-79b7dd2ee2b4
+name: wazuh_101550
+status: experimental
+description: 'T1485 - Data Destruction: Recursive deletion of critical system directories.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1485
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\brm\b\s+-(rf|fr)\s+(--no-preserve-root\s+)?\/(\*|home|var|etc|usr|boot|root|opt)?\/?(\s|$))'
+  condition: selection
+falsepositives:
+- Unknown
+level: critical
+wazuh_rule_id:
+- '101550'

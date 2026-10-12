@@ -1,0 +1,23 @@
+title: 'Upload Attack: Windows executable/script file upload attempt'
+id: dad51806-7949-574a-a618-9d38aeab5c2e
+name: wazuh_100463
+status: experimental
+description: 'Upload Attack: Windows executable/script file upload attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(upload|file_upload).*\.(exe|dll|bat|cmd|ps1|vbs|wsf|scr|com|msi)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100463'
+- '100810'

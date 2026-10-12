@@ -1,0 +1,22 @@
+title: 'Exfiltration: Encoded data piped to network tool'
+id: 948f071f-b782-52ad-bfd3-63822618056f
+name: wazuh_101509
+status: experimental
+description: 'T1048 - Exfiltration: Encoded data piped to network tool — covert exfiltration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1048
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bbase64\b\s+.*\|\s*(curl|wget|nc)\b|\bopenssl\b\s+enc\s+.*\|\s*(curl|nc)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101509'

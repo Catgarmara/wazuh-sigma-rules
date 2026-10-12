@@ -1,0 +1,22 @@
+title: 'Data Destruction: Secure file deletion tool used (shred/wipe/srm)'
+id: 913fe796-69f8-52c9-8343-ce3e3ac69ff6
+name: wazuh_101552
+status: experimental
+description: 'T1485 - Data Destruction: Secure file deletion tool used (shred/wipe/srm).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1485
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bshred\b\s+(-[fuvzn])+\s+|\bwipe\b\s+-[rfq]\s+|\bsrm\b\s+-[rz])'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101552'

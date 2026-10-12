@@ -1,0 +1,23 @@
+title: 'Web Shell: Double extension detected'
+id: c5a93aca-2d2c-5d15-9b7b-a5ec5216253a
+name: wazuh_100297
+status: experimental
+description: 'Web Shell: Double extension detected — disguised script file.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.php\.(jpg|png|gif|bmp|txt)|\.asp\.(jpg|png)|\.jsp\.(jpg|png))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100297'
+- '100822'

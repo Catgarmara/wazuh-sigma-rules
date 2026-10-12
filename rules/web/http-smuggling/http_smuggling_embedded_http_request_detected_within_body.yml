@@ -1,0 +1,23 @@
+title: 'HTTP Smuggling: Embedded HTTP request detected within body'
+id: f858b161-507b-5852-bf38-d781a49111e1
+name: wazuh_100252
+status: experimental
+description: 'HTTP Smuggling: Embedded HTTP request detected within body.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\r\n\r\n.*\b(GET|POST|PUT|DELETE|PATCH)\s+\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100252'
+- '100751'

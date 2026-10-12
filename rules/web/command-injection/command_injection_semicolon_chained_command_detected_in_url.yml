@@ -1,0 +1,23 @@
+title: 'Command Injection: Semicolon chained command detected in URL'
+id: 47b7f481-3d3d-5efb-b80b-0bfc64430f09
+name: wazuh_100161
+status: experimental
+description: 'Command Injection: Semicolon chained command detected in URL.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(;\s*(cat|ls|id|whoami|uname|wget|curl|nc|bash|sh)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100161'
+- '100717'

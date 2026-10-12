@@ -1,0 +1,22 @@
+title: 'API Abuse: Persistent rate limit violations'
+id: 80931f1f-09dd-509a-929e-5626b05edf9d
+name: wazuh_100311
+status: experimental
+description: 'API Abuse: Persistent rate limit violations — automated API scraping/abuse.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100310
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 20
+level: high
+wazuh_rule_id:
+- '100311'
+tags:
+- attack.impact
+- attack.t1499

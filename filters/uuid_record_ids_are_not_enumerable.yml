@@ -1,0 +1,16 @@
+title: UUID record identifiers are not enumerable
+id: 36f83b87-07d5-5d66-b998-18b32b786d0e
+description: The sequential-ID rule matches the leading digits of a UUID. Excluded only when there is no path traversal and every order/invoice/receipt/ticket id after /api/ is a full UUID. Numeric ids
+  still alert.
+date: '2026-10-12'
+logsource:
+  category: webserver
+  product: nginx
+filter:
+  rules:
+  - wazuh_100756
+  selection:
+    'cs-uri-query|re|i': '^(?!.*(\.\.|%2e))(?!.*\/api\/.*\/(order|invoice|receipt|ticket)\/(?![0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?![0-9a-z-]))[0-9])'
+  condition: not selection
+wazuh_rule_id:
+- '100989'

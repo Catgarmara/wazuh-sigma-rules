@@ -1,0 +1,22 @@
+title: 'WordPress: Repeated WordPress-targeted attacks from same IP'
+id: f00b73af-713a-5901-9bd6-20dfc0e23d9e
+name: wazuh_100489
+status: experimental
+description: 'WordPress: Repeated WordPress-targeted attacks from same IP — active exploitation.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100480
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 10
+level: high
+wazuh_rule_id:
+- '100489'
+tags:
+- attack.initial-access
+- attack.t1190

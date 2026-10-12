@@ -1,0 +1,23 @@
+title: 'SQL Injection: Database metadata enumeration attempt'
+id: 9cfc2722-2788-50aa-9c46-a9f1efde5a94
+name: wazuh_100104
+status: experimental
+description: 'SQL Injection: Database metadata enumeration attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\binformation_schema\b|\bsys\.|\bmysql\.user\b|\bpg_catalog\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100104'
+- '100783'

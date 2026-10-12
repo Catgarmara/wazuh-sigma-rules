@@ -1,0 +1,22 @@
+title: 'Multi-hop Proxy: Tor/ProxyChains/Shadowsocks anonymization tool detected'
+id: adff5b47-9006-5db3-9c34-bf04faf47143
+name: wazuh_101455
+status: experimental
+description: 'T1090.003 - Multi-hop Proxy: Tor/ProxyChains/Shadowsocks anonymization tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1090.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\btor\b|\bproxychains\b|\btsocks\b|\bsocksd\b|\bshadowsocks\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101455'

@@ -1,0 +1,23 @@
+title: 'XXE: Entity referencing /etc/passwd or file://'
+id: 1eea918f-4c5c-590b-8393-a02cd29e3003
+name: wazuh_100205
+status: experimental
+description: 'XXE: Entity referencing /etc/passwd or file:// — direct file read attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(ENTITY\b[^>]*\/etc\/passwd|ENTITY\b[^>]*file:\/\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100205'
+- '100848'

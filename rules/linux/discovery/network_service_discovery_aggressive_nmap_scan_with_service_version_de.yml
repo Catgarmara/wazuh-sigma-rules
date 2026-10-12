@@ -1,0 +1,22 @@
+title: 'Network Service Discovery: Aggressive nmap scan with service/version detection'
+id: 06483f77-6344-5a58-b76e-1066a770a80b
+name: wazuh_101303
+status: experimental
+description: 'T1046 - Network Service Discovery: Aggressive nmap scan with service/version detection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1046
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bnmap\b\s+(-sV|-sC|-A|--script|--version-all|-O)\s+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101303'

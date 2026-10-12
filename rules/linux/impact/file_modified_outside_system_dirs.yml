@@ -1,0 +1,17 @@
+title: File modified outside system directories
+id: 8e5bfe97-1108-511c-a0f9-5cb4d41df26a
+name: wazuh_101555_base
+status: experimental
+description: 'Base event for the mass file modification correlation: any FIM event outside /boot, /etc, /bin, /sbin, /lib, /lib64, /usr. Not an alert on its own.'
+author: Catgarmara
+date: '2026-10-12'
+logsource:
+  category: file_event
+  product: linux
+detection:
+  filter_system:
+    'TargetFilename|re': '^/(boot|etc|bin|sbin|lib|lib64|usr)/'
+  condition: not filter_system
+falsepositives:
+- Normal file activity
+level: informational

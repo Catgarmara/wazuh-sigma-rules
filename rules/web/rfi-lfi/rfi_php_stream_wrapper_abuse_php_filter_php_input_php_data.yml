@@ -1,0 +1,23 @@
+title: 'RFI: PHP stream wrapper abuse (php://filter, php://input, php://data)'
+id: c7d57311-6dc2-5a82-81b1-b5f8be7758ee
+name: wazuh_100141
+status: experimental
+description: 'RFI: PHP stream wrapper abuse (php://filter, php://input, php://data).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(php:\/\/filter\/(read|convert)|php:\/\/input|php:\/\/data)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100141'
+- '100770'

@@ -1,0 +1,23 @@
+title: 'Upload Attack: Server configuration file upload attempt (.htaccess/web.config)'
+id: f4788c7c-8c60-5858-bbe4-711aaf97578f
+name: wazuh_100467
+status: experimental
+description: 'Upload Attack: Server configuration file upload attempt (.htaccess/web.config).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(upload|file_upload).*\.(htaccess|web\.config|\.user\.ini)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100467'
+- '100814'

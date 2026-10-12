@@ -1,0 +1,23 @@
+title: 'XSS: Script tag detected in URL parameter'
+id: 02b7a69c-6faa-56e4-9de0-3600cf740f40
+name: wazuh_100120
+status: experimental
+description: 'XSS: Script tag detected in URL parameter.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(%3cscript|%253cscript)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100120'
+- '100833'

@@ -1,0 +1,24 @@
+title: 'Cron: System crontab modified'
+id: 65e3a894-2e6f-557d-bb4d-7fe84b2eaa39
+name: wazuh_101101
+status: experimental
+description: 'T1053.003 - Cron: System crontab modified — potential persistence mechanism.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1053.003
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/crontab$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101101'

@@ -1,0 +1,22 @@
+title: 'XSS: Repeated XSS attempts from same source'
+id: 508c3e74-2dc7-58dc-922b-34480bce5788
+name: wazuh_100128
+status: experimental
+description: 'XSS: Repeated XSS attempts from same source.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100120
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 10
+level: high
+wazuh_rule_id:
+- '100128'
+tags:
+- attack.initial-access
+- attack.t1189

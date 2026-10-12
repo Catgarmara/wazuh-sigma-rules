@@ -1,0 +1,33 @@
+title: 'Command Injection: attack pattern returned HTTP 200'
+id: 9a7c5fb4-057d-5873-8e8b-20ab703243df
+name: wazuh_100725
+status: experimental
+description: 'Command Injection: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(&&\s*(cat|ls|id|whoami|wget|curl|rm|chmod|chown)\b)'
+    - '(;\s*(cat|ls|id|whoami|uname|wget|curl|nc|bash|sh)\b)'
+    - '(?:^|[^a-z0-9_]|%[0-9a-f]{2})(?:nc|ncat|netcat)(?:\s|%20|\+|%09)+(?:-|%2d)[elp]|(?:^|[^a-z0-9_]|%[0-9a-f]{2})socat(?:\s|%20|\+|%09)+tcp'
+    - '(?:^|[^a-z0-9_]|%[0-9a-f]{2})(?:python[23]?(?:\s|%20|\+|%09)+(?:-|%2d)c|perl(?:\s|%20|\+|%09)+(?:-|%2d)e|ruby(?:\s|%20|\+|%09)+(?:-|%2d)e)(?:\s|%20|\+|%09)+'
+    - '(?:^|[^a-z0-9_]|%[0-9a-f]{2})(?:wget|curl|fetch)(?:\s|%20|\+|%09)+https?(?::|%3a)(?:\/|%2f){2}'
+    - '(?:^|[^a-z0-9_]|%[0-9a-f]{2})chmod(?:\s|%20|\+|%09)+[0-7]{3,4}\b|(?:^|[^a-z0-9_]|%[0-9a-f]{2})chown(?:\s|%20|\+|%09)+\w+(?::|%3a)\w+'
+    - '(\bbash\s+-i\s+>&|\/dev\/tcp\/|\bmkfifo\b.*\bnc\b)'
+    - '(\|\s*(cat|ls|id|whoami|uname|pwd|ifconfig|ip\s+a))'
+    - '(`[^`]*`|\$\([^)]*\))'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100725'

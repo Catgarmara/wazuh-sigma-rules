@@ -1,0 +1,23 @@
+title: 'XSS: Event handler injection attempt'
+id: b9faba6a-9209-57c9-aefb-0f138988d913
+name: wazuh_100121
+status: experimental
+description: 'XSS: Event handler injection attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(^|[^a-z])on(abort|animation(start|end|iteration)|auxclick|before(input|print|unload|toggle)|blur|cancel|can(play|playthrough)|change|click|close|contextmenu|copy|cuechange|cut|dblclick|drag(end|enter|leave|over|start)?|drop|durationchange|ended|error|focus(in|out)?|formdata|hashchange|input|invalid|key(down|press|up)|load(eddata|edmetadata|start)?|message|mouse(down|enter|leave|move|out|over|up|wheel)|pagehide|pageshow|paste|pause|play(ing)?|pointer(cancel|down|enter|leave|move|out|over|up|rawupdate)|popstate|progress|readystatechange|reset|resize|scroll(end)?|search|seek(ed|ing)|select(start|ionchange)?|show|submit|toggle|touch(cancel|end|move|start)|transition(cancel|end|run|start)|unload|volumechange|waiting|wheel|begin|repeat)(\s|%20|%09|%0a|%0d|\+|/|%2f)*(=|%3d)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100121'
+- '100834'

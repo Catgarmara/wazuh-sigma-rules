@@ -1,0 +1,22 @@
+title: 'Command Injection: Repeated OS command injection attempts detected'
+id: cd6f7eff-eec5-5537-9435-8901be59ed89
+name: wazuh_100169
+status: experimental
+description: 'Command Injection: Repeated OS command injection attempts detected.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100160
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 6
+level: high
+wazuh_rule_id:
+- '100169'
+tags:
+- attack.execution
+- attack.t1059

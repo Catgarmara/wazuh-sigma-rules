@@ -1,0 +1,22 @@
+title: 'Protocol Tunneling: Tunnel/proxy tool detected (chisel/ngrok/frp/socat)'
+id: 2379a97d-7e81-5b57-b417-88a75e2001f7
+name: wazuh_101453
+status: experimental
+description: 'T1572 - Protocol Tunneling: Tunnel/proxy tool detected (chisel/ngrok/frp/socat).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1572
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bchisel\b|\bngrok\b|\bfrp\b|\bsocat\b\s+TCP-LISTEN.*TCP:|\bplink\b\s+-R)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101453'

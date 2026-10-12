@@ -1,0 +1,22 @@
+title: 'Service Stop: Critical infrastructure service stopped/disabled'
+id: 26cbe494-f088-5118-bb0b-8ae910eb4707
+name: wazuh_101557
+status: experimental
+description: 'T1489 - Service Stop: Critical infrastructure service stopped/disabled.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1489
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bsystemctl\b\s+(stop|disable)\s+(mysql|postgresql|mongod|redis|httpd|nginx|docker))'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101557'

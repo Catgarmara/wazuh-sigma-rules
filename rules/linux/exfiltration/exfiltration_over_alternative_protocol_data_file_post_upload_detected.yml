@@ -1,0 +1,22 @@
+title: 'Exfiltration Over Alternative Protocol: Data file POST upload detected'
+id: f957d0c5-4b19-510a-a702-0bec5d72f2cb
+name: wazuh_101501
+status: experimental
+description: 'T1048 - Exfiltration Over Alternative Protocol: Data file POST upload detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1048
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bwget\b\s+--post-file|\bcurl\b\s+-X\s+POST.*-d\s+@.*\.(sql|csv|tar|zip|gz|7z|db))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101501'

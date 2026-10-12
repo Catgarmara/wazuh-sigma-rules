@@ -1,0 +1,23 @@
+title: 'XSS: Data URI with HTML content type detected'
+id: e594a159-becd-51ea-bb7d-208af772d3e5
+name: wazuh_100129
+status: experimental
+description: 'XSS: Data URI with HTML content type detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(data\s*:\s*text/html|data%3a\s*text/html|data\s*:\s*application/xhtml|data%3a\s*application/xhtml)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100129'
+- '100841'

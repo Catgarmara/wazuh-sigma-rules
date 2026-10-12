@@ -1,0 +1,22 @@
+title: 'SQL Injection: Repeated SQLi attempts'
+id: b85da457-f2df-5c7c-86af-32b0318215f0
+name: wazuh_100109
+status: experimental
+description: 'SQL Injection: Repeated SQLi attempts — likely automated scanner or attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100100
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 8
+level: high
+wazuh_rule_id:
+- '100109'
+tags:
+- attack.initial-access
+- attack.t1190

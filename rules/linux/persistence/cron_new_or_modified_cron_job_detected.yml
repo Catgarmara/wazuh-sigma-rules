@@ -1,0 +1,24 @@
+title: 'Cron: New or modified cron job detected'
+id: 6a4a75da-36b4-5e74-95b4-edc2c30bb9e7
+name: wazuh_101100
+status: experimental
+description: 'T1053.003 - Cron: New or modified cron job detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1053.003
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/cron\.(d|daily|hourly|weekly|monthly)\/|\/var\/spool\/cron\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101100'

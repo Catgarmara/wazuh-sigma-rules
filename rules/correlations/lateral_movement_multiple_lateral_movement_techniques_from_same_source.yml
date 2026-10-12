@@ -1,0 +1,30 @@
+title: 'Lateral Movement: Multiple lateral movement techniques from same source'
+id: f839c2cc-1b7c-502e-b2f4-2e5b44e8622b
+name: wazuh_101359
+status: experimental
+description: 'Lateral Movement: Multiple lateral movement techniques from same source — active propagation.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  type: event_count
+  rules:
+  - wazuh_101350
+  - wazuh_101351
+  - wazuh_101352
+  - wazuh_101353
+  - wazuh_101354
+  - wazuh_101355
+  - wazuh_101356
+  - wazuh_101357
+  - wazuh_101358
+  group-by:
+  - User
+  timespan: 300s
+  condition:
+    gte: 3
+level: high
+wazuh_rule_id:
+- '101359'
+tags:
+- attack.lateral-movement
+- attack.t1021

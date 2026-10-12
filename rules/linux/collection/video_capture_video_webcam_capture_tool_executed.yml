@@ -1,0 +1,22 @@
+title: 'Video Capture: Video/webcam capture tool executed'
+id: b8dac175-77d3-5cd7-9e92-37a4ad6f0e97
+name: wazuh_101407
+status: experimental
+description: 'T1125 - Video Capture: Video/webcam capture tool executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1125
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bffmpeg\b\s+.*-f\s+(v4l2|x11grab|video4linux)|\bstreamer\b|\bfswebcam\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101407'

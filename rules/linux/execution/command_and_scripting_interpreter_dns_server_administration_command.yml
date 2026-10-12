@@ -1,0 +1,22 @@
+title: 'Command and Scripting Interpreter: DNS server administration command'
+id: c74ee8d3-2fd4-59a7-93ff-e62f503169d9
+name: wazuh_101061
+status: experimental
+description: 'T1059 - Command and Scripting Interpreter: DNS server administration command.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(nsupdate|rndc\s+(reload|reconfig)|named-checkconf)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101061'

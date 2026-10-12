@@ -1,0 +1,23 @@
+title: 'LFI: Sensitive configuration file access attempt'
+id: afd3f7ba-5def-5d89-8755-b82e18af998e
+name: wazuh_100147
+status: experimental
+description: 'LFI: Sensitive configuration file access attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.htaccess|\.htpasswd|wp-config\.php|web\.config|\.env)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100147'
+- '100776'

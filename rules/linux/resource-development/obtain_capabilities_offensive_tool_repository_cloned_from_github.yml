@@ -1,0 +1,22 @@
+title: 'Obtain Capabilities: Offensive tool repository cloned from GitHub'
+id: 5f0c596d-391f-57b2-934b-573d0775926f
+name: wazuh_101653
+status: experimental
+description: 'T1588.005 - Obtain Capabilities: Offensive tool repository cloned from GitHub.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.resource-development
+- attack.t1588.005
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bgit\b\s+clone\s+.*github\.com.*\/(exploit|payload|shell|rat|c2|malware|backdoor))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101653'

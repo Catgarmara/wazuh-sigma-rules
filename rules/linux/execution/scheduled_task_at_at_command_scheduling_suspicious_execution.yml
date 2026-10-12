@@ -1,0 +1,24 @@
+title: 'Scheduled Task/At: at command scheduling suspicious execution'
+id: 96a2a4e9-1121-579e-8453-3086cecf287d
+name: wazuh_101056
+status: experimental
+description: 'T1053.002 - Scheduled Task/At: at command scheduling suspicious execution.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1053.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bat\b\s+(now|midnight|\d+:\d+).*\b(sh|bash|wget|curl|nc)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101056'

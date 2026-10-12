@@ -1,0 +1,23 @@
+title: 'Unix Shell Config: Shell profile/rc file modified'
+id: 4dfefb4c-7b76-5125-8e7a-bc9b96ad872a
+name: wazuh_101104
+status: experimental
+description: 'T1546.004 - Unix Shell Config: Shell profile/rc file modified — login persistence.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.persistence
+- attack.t1546.004
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/profile$|\/etc\/profile\.d\/|\.bashrc$|\.bash_profile$|\.zshrc$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101104'

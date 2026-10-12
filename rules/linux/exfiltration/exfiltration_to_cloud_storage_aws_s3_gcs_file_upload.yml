@@ -1,0 +1,22 @@
+title: 'Exfiltration to Cloud Storage: AWS S3/GCS file upload'
+id: 29bac2a7-132d-5ab2-8e00-1515d499d88c
+name: wazuh_101504
+status: experimental
+description: 'T1567.002 - Exfiltration to Cloud Storage: AWS S3/GCS file upload.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1567.002
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\baws\b\s+s3\s+(cp|sync|mv)\s+.*s3:\/\/|\bgsutil\b\s+(cp|rsync)\s+.*gs:\/\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101504'

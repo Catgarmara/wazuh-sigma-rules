@@ -1,0 +1,22 @@
+title: 'Exfiltration: Raw disk read piped to network tool'
+id: 86091315-37c4-52d2-90f7-2b4f3dec3297
+name: wazuh_101507
+status: experimental
+description: 'T1048 - Exfiltration: Raw disk read piped to network tool — full disk exfiltration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1048
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bdd\b\s+if=\/dev\/(sda|vda|xvda|nvme).*\|\s*(nc|curl|ssh)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101507'

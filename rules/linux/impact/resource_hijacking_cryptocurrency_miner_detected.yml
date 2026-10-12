@@ -1,0 +1,22 @@
+title: 'Resource Hijacking: Cryptocurrency miner detected'
+id: 7ab564c4-46e6-52f3-8246-f423e3d95eee
+name: wazuh_101561
+status: experimental
+description: 'T1496 - Resource Hijacking: Cryptocurrency miner detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1496
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcryptominer\b|\bxmrig\b|\bminerd\b|\bstratum\+tcp:\/\/|\bcpuminer\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101561'

@@ -1,0 +1,22 @@
+title: 'Disk Wipe: Disk content overwrite via dd'
+id: 60c6b957-626d-5019-b3de-612cc3348843
+name: wazuh_101551
+status: experimental
+description: 'T1561.001 - Disk Wipe: Disk content overwrite via dd — data destruction.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.impact
+- attack.t1561.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bdd\b\s+if=\/dev\/(zero|urandom|null)\s+of=\/dev\/(sda|vda|xvda|nvme))'
+  condition: selection
+falsepositives:
+- Unknown
+level: critical
+wazuh_rule_id:
+- '101551'

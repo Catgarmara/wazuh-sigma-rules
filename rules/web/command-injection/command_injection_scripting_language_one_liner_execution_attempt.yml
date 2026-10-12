@@ -1,0 +1,23 @@
+title: 'Command Injection: Scripting language one-liner execution attempt'
+id: 26f5c4b1-6db3-5e34-aa54-867acad39b3d
+name: wazuh_100166
+status: experimental
+description: 'Command Injection: Scripting language one-liner execution attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(?:^|[^a-z0-9_]|%[0-9a-f]{2})(?:python[23]?(?:\s|%20|\+|%09)+(?:-|%2d)c|perl(?:\s|%20|\+|%09)+(?:-|%2d)e|ruby(?:\s|%20|\+|%09)+(?:-|%2d)e)(?:\s|%20|\+|%09)+'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100166'
+- '100722'

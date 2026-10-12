@@ -1,0 +1,22 @@
+title: 'Audio Capture: Audio recording tool executed'
+id: fc7c4062-efe3-561d-b06b-63e78927ef5a
+name: wazuh_101406
+status: experimental
+description: 'T1123 - Audio Capture: Audio recording tool executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1123
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\barecord\b|\bparecord\b|\bffmpeg\b\s+.*-f\s+(alsa|pulse|avfoundation).*-i\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101406'

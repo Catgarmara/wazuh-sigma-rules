@@ -1,0 +1,22 @@
+title: 'Remote Access Software: Known C2 framework/RAT tool detected'
+id: cf802025-3c00-5a21-9b56-a2fea953d010
+name: wazuh_101457
+status: experimental
+description: 'T1219 - Remote Access Software: Known C2 framework/RAT tool detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1219
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bempire\b|\bcovenant\b|\bsliver\b.*generate|\bcobalt\s*strike\b|\bmetasploit\b|\bmsfvenom\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101457'

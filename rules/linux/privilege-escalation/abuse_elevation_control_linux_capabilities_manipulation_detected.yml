@@ -1,0 +1,22 @@
+title: 'Abuse Elevation Control: Linux capabilities manipulation detected'
+id: a283fe1d-474b-53d9-8deb-dd546bdec428
+name: wazuh_101156
+status: experimental
+description: 'T1548 - Abuse Elevation Control: Linux capabilities manipulation detected.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1548
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcapsh\b|\bsetcap\b\s+cap_|\bgetcap\b\s+)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101156'

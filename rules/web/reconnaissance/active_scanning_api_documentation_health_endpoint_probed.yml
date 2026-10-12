@@ -1,0 +1,22 @@
+title: 'Active Scanning: API documentation/health endpoint probed'
+id: fb89934e-62be-5aaf-ae1c-ee2cf8436995
+name: wazuh_101608
+status: experimental
+description: 'T1595 - Active Scanning: API documentation/health endpoint probed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/v\d+\/(docs|swagger|openapi|graphql|health|version|status|metrics))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101608'

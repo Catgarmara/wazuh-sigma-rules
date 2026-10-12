@@ -1,0 +1,22 @@
+title: 'Software Discovery: Installed packages enumeration'
+id: b8fcddae-b576-5019-8cf8-35cfd70b91a3
+name: wazuh_101309
+status: experimental
+description: 'T1518 - Software Discovery: Installed packages enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1518
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bdpkg\b\s+-l|\brpm\b\s+-qa|\bapt\b\s+list\s+--installed|\bsnap\b\s+list)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101309'

@@ -1,0 +1,22 @@
+title: 'System Binary Proxy Execution: certutil/bitsadmin download abuse'
+id: a3acbe5c-55f2-513c-87fa-734bec492f83
+name: wazuh_101059
+status: experimental
+description: 'T1218 - System Binary Proxy Execution: certutil/bitsadmin download abuse.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1218
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcertutil\b.*(-urlcache|-decode|-encode)|bitsadmin\b.*\/transfer)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101059'

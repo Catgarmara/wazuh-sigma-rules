@@ -1,0 +1,23 @@
+title: 'XSS: JavaScript function injection'
+id: 78306d22-e193-5d41-a748-ccf229524f5a
+name: wazuh_100126
+status: experimental
+description: 'XSS: JavaScript function injection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(alert\s*\(|confirm\s*\(|prompt\s*\(|eval\s*\()'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100126'
+- '100839'

@@ -1,0 +1,28 @@
+title: 'Web Shell: Server-side script created by web server user'
+id: 06b51245-0b28-5435-9cf4-66d090666d34
+name: wazuh_100294
+status: experimental
+description: 'File integrity monitoring sees a new server-side script (php, asp, jsp, cgi, pl) owned by a web server account. Potential web shell upload.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.t1505.003
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\.(php|asp|aspx|jsp|jspx|cgi|pl)\s*$)'
+    'User|contains':
+    - www-data
+    - apache
+    - nginx
+    - httpd
+    - nobody
+  condition: selection
+falsepositives:
+- Application deployments run as the web server user
+level: high
+wazuh_rule_id:
+- '100294'

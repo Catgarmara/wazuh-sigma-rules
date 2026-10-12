@@ -1,0 +1,22 @@
+title: 'Unix Shell: Download-and-execute pipe pattern'
+id: d138b400-85f2-5f8b-8172-68aec696665b
+name: wazuh_101053
+status: experimental
+description: 'T1059.004 - Unix Shell: Download-and-execute pipe pattern.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059.004
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bbash\b\s+-c\s+.*\b(curl|wget|python|perl|ruby)\b.*\|.*\b(bash|sh)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101053'

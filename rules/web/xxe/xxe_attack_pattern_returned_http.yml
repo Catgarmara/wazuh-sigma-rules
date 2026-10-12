@@ -1,0 +1,31 @@
+title: 'XXE: attack pattern returned HTTP 200'
+id: 69a39228-791c-591f-bdd4-af3a6a07e87d
+name: wazuh_100850
+status: experimental
+description: 'XXE: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(ENTITY\b[^>]*\/etc\/passwd|ENTITY\b[^>]*file:\/\/)'
+    - '(ENTITY\b[^>]*expect:\/\/|ENTITY\b[^>]*php:\/\/filter)'
+    - '(ENTITY\s+%\s+\w+\s+SYSTEM)'
+    - '(\<!DOCTYPE\b[^>]*\bENTITY\b|\<!ENTITY\b|%3c(%21|!)(doctype|entity)|%253c(%2521|!)(doctype|entity))'
+    - '(\<\?xml\b[^>]*\?>.*\<!DOCTYPE\b|%3c%3fxml\b.*%3c(%21|!)doctype)'
+    - '(\bPUBLIC\b\s+["''][^"'']*["'']\s+["''](https?|ftp):\/\/)'
+    - '(\bSYSTEM\b\s+["''](file|https?|ftp|php|expect|data):\/\/)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100850'

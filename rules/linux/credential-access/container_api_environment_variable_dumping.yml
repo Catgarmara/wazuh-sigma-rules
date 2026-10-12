@@ -1,0 +1,22 @@
+title: 'Container API: Environment variable dumping'
+id: ca4341d0-7785-598f-8ef9-727b3b637926
+name: wazuh_101260
+status: experimental
+description: 'T1552.007 - Container API: Environment variable dumping — secret extraction.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.t1552.007
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\benv\b\s*$|\bprintenv\b|\bset\b\s*$|strings\s+\/proc\/\d+\/environ)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101260'

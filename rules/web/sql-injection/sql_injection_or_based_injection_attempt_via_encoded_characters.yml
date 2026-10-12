@@ -1,0 +1,23 @@
+title: 'SQL Injection: OR-based injection attempt via encoded characters'
+id: dcb7a398-13e1-513d-a570-066b2968249b
+name: wazuh_100780
+status: experimental
+description: 'SQL Injection: OR-based injection attempt via encoded characters. (Merges Wazuh rule 100101, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(%27|'')(\s|%20|\+)*(o|%6f)(r|%72)(\s|%20|\+)+(\d|%27|''|true|\(|%28)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100101'
+- '100780'

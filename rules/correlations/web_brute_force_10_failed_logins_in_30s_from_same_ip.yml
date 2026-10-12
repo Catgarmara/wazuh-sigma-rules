@@ -1,0 +1,22 @@
+title: 'Web Brute Force: 10+ failed logins in 30s from same IP'
+id: 39c43e0c-07ea-573b-ad61-7cadfe8b5220
+name: wazuh_100271
+status: experimental
+description: 'Web Brute Force: 10+ failed logins in 30s from same IP — brute force attack.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100270
+  timespan: 30s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 10
+level: high
+wazuh_rule_id:
+- '100271'
+tags:
+- attack.credential-access
+- attack.t1110

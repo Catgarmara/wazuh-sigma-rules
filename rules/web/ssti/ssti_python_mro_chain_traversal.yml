@@ -1,0 +1,23 @@
+title: 'SSTI: Python MRO chain traversal'
+id: 564d8e77-3b4b-5a2e-817b-7fe5fec6f054
+name: wazuh_100382
+status: experimental
+description: 'SSTI: Python MRO chain traversal — RCE attempt via template injection.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\{\{.*__class__.*__subclasses__|__mro__|__globals__|__builtins__)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100382'
+- '100802'

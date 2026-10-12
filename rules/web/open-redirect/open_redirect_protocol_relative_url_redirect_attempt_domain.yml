@@ -1,0 +1,23 @@
+title: 'Open Redirect: Protocol-relative URL redirect attempt (//domain)'
+id: 061466b6-fd19-5ddd-9ee1-3bcc90fff6f4
+name: wazuh_100341
+status: experimental
+description: 'Open Redirect: Protocol-relative URL redirect attempt (//domain).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\b(redirect|url|next|goto)\s*=\s*\/\/[^/])'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100341'
+- '100766'

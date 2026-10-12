@@ -1,0 +1,25 @@
+title: 'CSRF: POST to sensitive API endpoint'
+id: 32403927-8c3a-5056-b30e-cf30ed0a6399
+name: wazuh_100241
+status: experimental
+description: 'POST to a state-changing API endpoint (transfer, payment, delete, admin, settings, password). Verify CSRF token and origin. The method gate is kept from the JSON-stream rule; the plaintext-stream
+  twin had no method gate. (Merges Wazuh rule 100730, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    cs-method: POST
+    'cs-uri-query|re|i': '(\/api\/(transfer|payment|delete|admin|settings|password))'
+  condition: selection
+falsepositives:
+- Legitimate form submissions to these endpoints
+level: medium
+wazuh_rule_id:
+- '100241'
+- '100730'

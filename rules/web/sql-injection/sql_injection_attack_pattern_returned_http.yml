@@ -1,0 +1,35 @@
+title: 'SQL Injection: attack pattern returned HTTP 200'
+id: a202a924-3602-5635-b65b-aec77a3db579
+name: wazuh_100790
+status: experimental
+description: 'SQL Injection: attack pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(%27|'')(\s|%20|\+)*(o|%6f)(r|%72)(\s|%20|\+)+(\d|%27|''|true|\(|%28)'
+    - '(?:;|%3b|''|%27|\)|%29)(?:\s|%20|\+|%09)*(?:drop|truncate|alter)(?:\s|%20|\+|%09)+table\b'
+    - '(\b(having|group\s+by)\b.*(\bcount\b|\bsum\b|\bavg\b))'
+    - '(\bcast\s*\(.*\bas\b|\bconvert\s*\()'
+    - '(\bchar\s*\(|\bconcat\s*\(|\bconcat_ws\s*\(|\bgroup_concat\s*\()'
+    - '(\bexec\b|\bexecute\b)\s*((\bsp_|\bxp_))'
+    - '(\binformation_schema\b|\bsys\.|\bmysql\.user\b|\bpg_catalog\b)'
+    - '(\bload_file\s*\(|\binto\s+outfile\b|\binto\s+dumpfile\b)'
+    - '(\bsleep\s*\(|\bbenchmark\s*\(|\bwaitfor\b\s+\bdelay\b)'
+    - '(\bunion\b.*\bselect\b|\bselect\b.*\bfrom\b.*\bwhere\b)'
+    - '\?.*(?:''|%27|"|%22|\)|%29|\s|%20|\+|=\d+)(?:--|%2d%2d|%23)(?:\s|%20|\+)*$'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100790'

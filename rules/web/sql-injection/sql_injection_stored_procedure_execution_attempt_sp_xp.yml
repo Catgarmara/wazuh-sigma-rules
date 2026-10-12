@@ -1,0 +1,23 @@
+title: 'SQL Injection: Stored procedure execution attempt (sp_/xp_)'
+id: e49423ff-1e4e-5652-a2e1-9218b50b1b04
+name: wazuh_100102
+status: experimental
+description: 'SQL Injection: Stored procedure execution attempt (sp_/xp_).'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\bexec\b|\bexecute\b)\s*((\bsp_|\bxp_))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100102'
+- '100781'

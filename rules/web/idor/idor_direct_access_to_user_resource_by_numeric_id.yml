@@ -1,0 +1,23 @@
+title: 'IDOR: Direct access to user resource by numeric ID'
+id: 30447501-9633-5b0e-bd52-0b5c596527ed
+name: wazuh_100754
+status: experimental
+description: 'IDOR: Direct access to user resource by numeric ID — verify authorization. (Merges Wazuh rule 100400, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/users?\/\d+\/(profile|settings|documents|orders|invoices))'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100400'
+- '100754'

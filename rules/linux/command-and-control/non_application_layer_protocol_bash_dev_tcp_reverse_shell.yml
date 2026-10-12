@@ -1,0 +1,22 @@
+title: 'Non-Application Layer Protocol: Bash /dev/tcp reverse shell'
+id: af8048c7-ac59-51b9-96d4-1253f39ad800
+name: wazuh_101451
+status: experimental
+description: 'T1095 - Non-Application Layer Protocol: Bash /dev/tcp reverse shell.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.command-and-control
+- attack.t1095
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bbash\b.*\/dev\/tcp\/\d+\.\d+\.\d+\.\d+\/\d+|\bmkfifo\b.*\bnc\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101451'

@@ -1,0 +1,26 @@
+title: 'Active Scanning: Admin panel discovery'
+id: c2da97c9-3db7-50b8-9443-8764b8e56230
+name: wazuh_101602
+status: experimental
+description: 'T1595 - Active Scanning: Admin panel discovery — successful or redirect.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.reconnaissance
+- attack.t1595
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/admin\b|\/administrator\b|\/wp-admin\b|\/phpmyadmin\b|\/adminer\b|\/cpanel\b|\/webmail\b)'
+    sc-status:
+    - 200
+    - 301
+    - 302
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101602'

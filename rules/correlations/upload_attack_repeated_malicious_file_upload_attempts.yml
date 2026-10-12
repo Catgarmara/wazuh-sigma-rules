@@ -1,0 +1,22 @@
+title: 'Upload Attack: Repeated malicious file upload attempts'
+id: bee3ff1a-e60e-59eb-9926-703c1dbafdf6
+name: wazuh_100468
+status: experimental
+description: 'Upload Attack: Repeated malicious file upload attempts — persistent exploitation.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100460
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 5
+level: high
+wazuh_rule_id:
+- '100468'
+tags:
+- attack.persistence
+- attack.t1505.003

@@ -1,0 +1,22 @@
+title: 'CSRF: State-changing request with CSRF token but missing Referer header'
+id: 0fe0e139-46a8-56e6-8d0f-fda8adedeb86
+name: wazuh_100729
+status: experimental
+description: 'CSRF: State-changing request with CSRF token but missing Referer header.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1189
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(csrf[_-]?token=|_token=|authenticity_token=)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100729'

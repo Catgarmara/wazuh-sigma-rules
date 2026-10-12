@@ -1,0 +1,23 @@
+title: 'Command Injection: Reverse shell attempt via netcat/socat'
+id: d35fae19-df26-5d77-821b-1f60b451e4dd
+name: wazuh_100164
+status: experimental
+description: 'Command Injection: Reverse shell attempt via netcat/socat.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(?:^|[^a-z0-9_]|%[0-9a-f]{2})(?:nc|ncat|netcat)(?:\s|%20|\+|%09)+(?:-|%2d)[elp]|(?:^|[^a-z0-9_]|%[0-9a-f]{2})socat(?:\s|%20|\+|%09)+tcp'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100164'
+- '100720'

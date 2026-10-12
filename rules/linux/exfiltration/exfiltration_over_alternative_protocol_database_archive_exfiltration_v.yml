@@ -1,0 +1,22 @@
+title: 'Exfiltration Over Alternative Protocol: Database/archive exfiltration via SCP'
+id: 01192ba6-3ec5-5271-a1aa-88af5216bfa6
+name: wazuh_101502
+status: experimental
+description: 'T1048 - Exfiltration Over Alternative Protocol: Database/archive exfiltration via SCP.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.exfiltration
+- attack.t1048
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bscp\b\s+.*\.(sql|db|csv|tar|zip|gz|bak|dump)\s+\w+@)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101502'

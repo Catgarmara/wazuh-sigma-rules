@@ -1,0 +1,22 @@
+title: 'Sudo Abuse: Root shell obtained via sudo'
+id: ac1966e4-cc63-5ae9-a73d-9f6062aae3c2
+name: wazuh_101151
+status: experimental
+description: 'T1548.003 - Sudo Abuse: Root shell obtained via sudo.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.privilege-escalation
+- attack.t1548.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': 'COMMAND=\S*\/(ba|z|k|da)?sh(\s+-[ils]{1,3})?\s*$'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101151'

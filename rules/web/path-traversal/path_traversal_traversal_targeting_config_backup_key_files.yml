@@ -1,0 +1,23 @@
+title: 'Path Traversal: traversal targeting config/backup/key files'
+id: 8cf18d5e-cf6e-55db-bf6d-513555cac097
+name: wazuh_100185
+status: experimental
+description: 'Path Traversal: traversal targeting config/backup/key files.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1083
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\.\./.*\.(conf|cfg|ini|log|bak|old|orig|sql|key|pem))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100185'
+- '100705'

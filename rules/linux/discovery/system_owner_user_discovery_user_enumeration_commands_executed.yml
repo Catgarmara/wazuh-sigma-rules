@@ -1,0 +1,22 @@
+title: 'System Owner/User Discovery: User enumeration commands executed'
+id: 9b97c3a0-e0b7-520a-bc1e-e8108c98f91a
+name: wazuh_101304
+status: experimental
+description: 'T1033 - System Owner/User Discovery: User enumeration commands executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1033
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bwho\b|\bw\b\s*$|\blast\b|\blastlog\b|\busers\b\s*$|\bwhoami\b|\bid\b\s*$)'
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '101304'

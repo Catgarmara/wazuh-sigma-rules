@@ -1,0 +1,22 @@
+title: 'IDOR: Mass file/document enumeration'
+id: ff5f8b85-16b7-5863-8d9c-357c1ae61daa
+name: wazuh_100404
+status: experimental
+description: 'IDOR: Mass file/document enumeration — data exfiltration attempt.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100755
+  timespan: 60s
+  type: event_count
+  group-by:
+  - c-ip
+  condition:
+    gte: 30
+level: high
+wazuh_rule_id:
+- '100404'
+tags:
+- attack.initial-access
+- attack.t1190

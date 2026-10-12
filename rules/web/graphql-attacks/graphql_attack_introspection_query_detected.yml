@@ -1,0 +1,23 @@
+title: 'GraphQL Attack: Introspection query detected'
+id: 1ec3f0bd-eb3c-58ef-a60d-7d6aa94c6599
+name: wazuh_100440
+status: experimental
+description: 'GraphQL Attack: Introspection query detected — schema enumeration.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\{__schema\b|\{__type\b|query\s*\{\s*__schema)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100440'
+- '100739'

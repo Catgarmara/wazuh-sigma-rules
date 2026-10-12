@@ -1,0 +1,22 @@
+title: 'PowerShell: Download cradle or socket connection attempt'
+id: e589f738-8d77-5f9a-bb28-611315b6a3dc
+name: wazuh_101052
+status: experimental
+description: 'T1059.001 - PowerShell: Download cradle or socket connection attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059.001
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bpowershell\b.*(New-Object\s+Net\.WebClient|DownloadString|DownloadFile|System\.Net\.Sockets))'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101052'

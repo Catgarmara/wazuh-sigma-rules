@@ -1,0 +1,26 @@
+title: 'Web Brute Force: Failed API authentication attempt'
+id: f5e6188b-bbff-5859-95ad-874a4cc781d5
+name: wazuh_100714
+status: experimental
+description: 'Web Brute Force: Failed API authentication attempt. (Merges Wazuh rule 100276, the other log stream''s variant.)'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.credential-access
+- attack.t1110
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(\/api\/v\d+\/(login|token|oauth\/token|auth))'
+    sc-status:
+    - 401
+    - 403
+  condition: selection
+falsepositives:
+- Unknown
+level: low
+wazuh_rule_id:
+- '100276'
+- '100714'

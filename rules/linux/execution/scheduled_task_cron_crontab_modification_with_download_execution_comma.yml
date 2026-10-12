@@ -1,0 +1,24 @@
+title: 'Scheduled Task/Cron: Crontab modification with download/execution command'
+id: 305c3797-b1c0-5e0d-a7a0-2c95f2b8f7cd
+name: wazuh_101055
+status: experimental
+description: 'T1053.003 - Scheduled Task/Cron: Crontab modification with download/execution command.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1053.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcrontab\b\s+-[lr]|\bcrontab\b.*\b(wget|curl|bash|nc)\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101055'

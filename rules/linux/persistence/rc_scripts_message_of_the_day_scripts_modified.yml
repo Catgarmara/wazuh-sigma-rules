@@ -1,0 +1,23 @@
+title: 'RC Scripts: Message-of-the-day scripts modified'
+id: a79a6c40-4f87-530a-a103-cf11e1adeaf8
+name: wazuh_101112
+status: experimental
+description: 'T1037.004 - RC Scripts: Message-of-the-day scripts modified — login trigger persistence.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1037.004
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/motd|\/etc\/update-motd\.d\/)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101112'

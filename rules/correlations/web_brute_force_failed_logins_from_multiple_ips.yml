@@ -1,0 +1,21 @@
+title: 'Web Brute Force: Failed logins from multiple IPs'
+id: 17c9c434-fbfb-5199-bf3f-cae89c1bfcde
+name: wazuh_100273
+status: experimental
+description: 'Web Brute Force: Failed logins from multiple IPs — distributed brute force.'
+author: Catgarmara
+date: '2026-10-12'
+correlation:
+  rules:
+  - wazuh_100270
+  timespan: 30s
+  type: value_count
+  condition:
+    field: c-ip
+    gte: 5
+level: high
+wazuh_rule_id:
+- '100273'
+tags:
+- attack.credential-access
+- attack.t1110

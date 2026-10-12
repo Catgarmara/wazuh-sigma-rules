@@ -1,0 +1,22 @@
+title: 'Visual Basic/JScript: Script host executing VBS/JS file'
+id: 09dc340a-3cfe-5688-8792-5b2a6f0ba384
+name: wazuh_101060
+status: experimental
+description: 'T1059.005 - Visual Basic/JScript: Script host executing VBS/JS file.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.execution
+- attack.t1059.005
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bcscript\b|\bwscript\b).*\.(vbs|js|wsf|wsh)\b'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101060'

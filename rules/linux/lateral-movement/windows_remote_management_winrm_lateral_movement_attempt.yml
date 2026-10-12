@@ -1,0 +1,22 @@
+title: 'Windows Remote Management: WinRM lateral movement attempt'
+id: 56af2e7c-ca1d-5b8d-bb8e-7de419c92b10
+name: wazuh_101358
+status: experimental
+description: 'T1021.006 - Windows Remote Management: WinRM lateral movement attempt.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.lateral-movement
+- attack.t1021.006
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bevil-winrm\b|\bwinrs\b|\bpwsh\b.*New-PSSession|\bEnter-PSSession\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101358'

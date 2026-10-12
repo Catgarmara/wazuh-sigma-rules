@@ -1,0 +1,22 @@
+title: 'Impair Defenses: Log directory bind-mounted to /dev/null'
+id: 0318eae8-517f-5dfb-9dbd-a945fe121c9a
+name: wazuh_101212
+status: experimental
+description: 'T1562 - Impair Defenses: Log directory bind-mounted to /dev/null.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.t1685
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bmount\b\s+--bind\s+\/dev\/null\s+\/var\/log|\bmount\b\s+-o\s+remount.*nosuid)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101212'

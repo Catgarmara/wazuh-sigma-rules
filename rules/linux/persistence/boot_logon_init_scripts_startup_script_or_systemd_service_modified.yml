@@ -1,0 +1,23 @@
+title: 'Boot/Logon Init Scripts: Startup script or systemd service modified'
+id: b32b3542-725c-5c13-ac39-b91e8bb7f807
+name: wazuh_101103
+status: experimental
+description: 'T1037 - Boot/Logon Init Scripts: Startup script or systemd service modified.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.persistence
+- attack.privilege-escalation
+- attack.t1037
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    'TargetFilename|re|i': '(\/etc\/rc\.local|\/etc\/init\.d\/|\/etc\/systemd\/system\/.*\.service)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101103'

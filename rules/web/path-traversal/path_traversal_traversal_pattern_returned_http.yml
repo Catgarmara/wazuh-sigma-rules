@@ -1,0 +1,30 @@
+title: 'Path Traversal: traversal pattern returned HTTP 200'
+id: 1a12e846-1cd8-5cbb-8350-40957c0c18a3
+name: wazuh_100706
+status: experimental
+description: 'Path Traversal: traversal pattern returned HTTP 200 — server processed the request.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.discovery
+- attack.t1083
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection_attack:
+    'cs-uri-query|re|i':
+    - '(\.\.%252f|\.\.%255c|%252e%252e)'
+    - '(\.\.%c0%af|\.\.%c1%9c|%c0%ae%c0%ae)'
+    - '(\.\./){4,}'
+    - '(\.\./.*\.(conf|cfg|ini|log|bak|old|orig|sql|key|pem))'
+    - '(\.\.0x2f|\.\.0x5c|0x2e0x2e)'
+    - '(\.\.\/|\.\.\\|%2e%2e%2f|%2e%2e%5c)'
+  selection_success:
+    sc-status: 200
+  condition: selection_attack and selection_success
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '100706'

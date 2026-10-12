@@ -1,0 +1,23 @@
+title: 'Deserialization: PHP serialized object detected in URL parameter'
+id: 725a3e17-beed-51af-b4d4-b74dca4c8399
+name: wazuh_100360
+status: experimental
+description: 'Deserialization: PHP serialized object detected in URL parameter.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.initial-access
+- attack.t1190
+logsource:
+  category: webserver
+  product: nginx
+detection:
+  selection:
+    'cs-uri-query|re|i': '(O:\d+:"[^"]+"|a:\d+:\{)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '100360'
+- '100733'

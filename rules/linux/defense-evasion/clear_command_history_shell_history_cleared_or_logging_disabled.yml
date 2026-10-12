@@ -1,0 +1,22 @@
+title: 'Clear Command History: Shell history cleared or logging disabled'
+id: b1055573-34c1-57e1-83e8-af16a22b43e9
+name: wazuh_101205
+status: experimental
+description: 'T1070.003 - Clear Command History: Shell history cleared or logging disabled.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1070.003
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bhistory\b\s+-c|\bunset\b\s+HISTFILE|\bexport\b\s+HISTSIZE=0|\bshred\b\s+.*\.bash_history)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101205'

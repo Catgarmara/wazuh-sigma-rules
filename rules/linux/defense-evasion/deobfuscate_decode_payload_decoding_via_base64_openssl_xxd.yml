@@ -1,0 +1,22 @@
+title: 'Deobfuscate/Decode: Payload decoding via base64/openssl/xxd'
+id: 6c723cc9-d269-5284-ab18-64f1ffc2f90b
+name: wazuh_101207
+status: experimental
+description: 'T1140 - Deobfuscate/Decode: Payload decoding via base64/openssl/xxd.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.stealth
+- attack.t1140
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bbase64\b\s+(-d|--decode)|\bopenssl\b\s+(enc|base64)|\bxxd\b\s+-r)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101207'

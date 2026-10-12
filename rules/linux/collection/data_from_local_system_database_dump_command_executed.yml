@@ -1,0 +1,22 @@
+title: 'Data from Local System: Database dump command executed'
+id: fda69501-f239-5cca-baad-98f2917e0277
+name: wazuh_101402
+status: experimental
+description: 'T1005 - Data from Local System: Database dump command executed.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1005
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bmysqldump\b|\bpg_dump\b|\bmongodump\b|\bsqlite3\b\s+.*\.dump)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101402'

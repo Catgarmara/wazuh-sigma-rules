@@ -1,0 +1,22 @@
+title: 'Data from Local System: Bulk document collection via find+copy'
+id: 4760990e-0cea-5021-8f34-edfa74bf9ed0
+name: wazuh_101405
+status: experimental
+description: 'T1005 - Data from Local System: Bulk document collection via find+copy.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.collection
+- attack.t1005
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bfind\b\s+.*\.(docx?|xlsx?|pptx?|pdf|csv|txt|json|xml)\b.*-exec\b.*\bcp\b)'
+  condition: selection
+falsepositives:
+- Unknown
+level: medium
+wazuh_rule_id:
+- '101405'

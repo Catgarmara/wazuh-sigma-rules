@@ -1,0 +1,22 @@
+title: 'Disable Audit: Audit daemon killed or rules cleared'
+id: 79f4838b-c242-5f9c-ae16-3cf9157c24bc
+name: wazuh_101211
+status: experimental
+description: 'T1562.001 - Disable Audit: Audit daemon killed or rules cleared.'
+author: Catgarmara
+date: '2026-10-12'
+tags:
+- attack.defense-impairment
+- attack.t1685.004
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection:
+    'CommandLine|re|i': '(\bauditctl\b\s+(-D|-e\s+0|--reset)|\bkillall\b\s+auditd)'
+  condition: selection
+falsepositives:
+- Unknown
+level: high
+wazuh_rule_id:
+- '101211'
